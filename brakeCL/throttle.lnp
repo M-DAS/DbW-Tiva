@@ -1,0 +1,18 @@
+--cpu Cortex-M4
+".\startup.o"
+".\main.o"
+".\globals_and_defines.o"
+".\initialization.o"
+".\tick_timer.o"
+".\switches_portf.o"
+".\can_comm.o"
+".\pedal_adc.o"
+".\drive_by_pedal.o"
+".\digital_pot.o"
+".\drive_by_wire.o"
+".\linear_actuator.o"
+".\pid_cntl.o"
+"C:\ti\TivaWare_C_Series-2.1.4.178\driverlib\rvmdk\driverlib.lib"
+--ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\throttle.map" -o .\throttle.axf

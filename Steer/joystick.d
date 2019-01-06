@@ -1,0 +1,9 @@
+.\joystick.o: Joystick.c
+.\joystick.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\joystick.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\joystick.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/tm4c123gh6pm.h
+.\joystick.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/hw_memmap.h
+.\joystick.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/sysctl.h
+.\joystick.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/gpio.h
+.\joystick.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/adc.h
+.\joystick.o: Globals_and_Defines.h

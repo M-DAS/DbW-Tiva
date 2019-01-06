@@ -1,0 +1,10 @@
+.\update_timer.o: Update_Timer.c
+.\update_timer.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\update_timer.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
+.\update_timer.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/tm4c123gh6pm.h
+.\update_timer.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/hw_memmap.h
+.\update_timer.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/sysctl.h
+.\update_timer.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/interrupt.h
+.\update_timer.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/timer.h
+.\update_timer.o: Globals_and_Defines.h
+.\update_timer.o: CAN_comm.h
