@@ -13,7 +13,7 @@
 #include "driverlib/can.h"
 
 #include "Globals_and_Defines.h"
-	
+
 
 void CAN_Setup(void)
 {
@@ -30,11 +30,11 @@ void CAN_Setup(void)
 	//Configure the pins for CAN
 	GPIOPinTypeCAN(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
-	
+
 	// Enable the CAN0 module.
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_CAN0))
-	{} 
+	{}
 	CANInit(CAN0_BASE);
 
 	// 250Kbit CAN speed
@@ -45,7 +45,7 @@ void CAN_Setup(void)
 //	CAN0_TST_R |= CAN_TST_LBACK;  //REMOVE FOR REAL IMPLEMENT
 
 	CANEnable(CAN0_BASE);
-		
+
 }
 
 
@@ -58,13 +58,13 @@ void sendSteeringData(uint32_t steering) // will have to add ,modes here
 	pui8BufferOut[2] = (steering&0x0000FF00)>>8;
 	pui8BufferOut[3] = (steering&0x00FF0000)>>16;
 	pui8BufferOut[4] = (steering&0xFF000000)>>24;
-		
+
 	//Configure transmit of message object.
 	sMsgObjectTx.ui32MsgID =  steering_board_address;
 	sMsgObjectTx.ui32Flags = 0;
 	sMsgObjectTx.ui32MsgLen = 8;
 	sMsgObjectTx.pui8MsgData = pui8BufferOut;
-	
+
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 1, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
@@ -73,19 +73,19 @@ void sendThrottleData(uint32_t throttle)
 {
 	tCANMsgObject sMsgObjectTx;
 	uint8_t pui8BufferOut[8];
-	
+
   pui8BufferOut[0] =  0x04;//MODES DONT CHANGE THIS FOR NOW
-	
+
 	pui8BufferOut[1] = (throttle&0x000000FF);//data
 	pui8BufferOut[2] = (throttle&0x0000FF00)>>8;
 
-		
+
 	//Configure transmit of message object.
 	sMsgObjectTx.ui32MsgID =  throttle_board_address;
 	sMsgObjectTx.ui32Flags = 0;
 	sMsgObjectTx.ui32MsgLen = 8;
 	sMsgObjectTx.pui8MsgData = pui8BufferOut;
-	
+
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 2, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
@@ -95,10 +95,10 @@ void sendThrottleData(uint32_t throttle)
 //TBD
 void sendBrakeData(uint32_t brake)
 {
-	
+
 	tCANMsgObject sMsgObjectTx;
 	uint8_t pui8BufferOut[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-	
+
 
 
 	pui8BufferOut[1] = ((brake>>8)&0x00FF);//msb
@@ -108,12 +108,8 @@ void sendBrakeData(uint32_t brake)
 	sMsgObjectTx.ui32MsgID =  brake_board_address;
 	sMsgObjectTx.ui32Flags = 0;
 	sMsgObjectTx.ui32MsgLen = 8;
-	sMsgObjectTx.pui8MsgData = pui8BufferOut;
-	
+	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATOM
+
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 4, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
-
-
-
-
