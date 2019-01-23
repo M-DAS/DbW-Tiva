@@ -103,12 +103,12 @@ void sendBrakeData(uint32_t brake)
 
 	pui8BufferOut[1] = ((brake>>8)&0x00FF);//msb
 	pui8BufferOut[2] = (brake&0x00FF);//lsb
-		
+
 	//Configure transmit of message object.
 	sMsgObjectTx.ui32MsgID =  brake_board_address;
 	sMsgObjectTx.ui32Flags = 0;
 	sMsgObjectTx.ui32MsgLen = 8;
-	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATOM
+	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATO
 
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 4, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
