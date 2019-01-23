@@ -29,7 +29,7 @@
 	
 	
 //Drive by wire update rate in Hz
-#define Update_Rate 1000
+#define Update_Rate 10
 
 //Throttle board CAN address
 #define throttle_board_address 0x012EEEEE
