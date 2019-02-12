@@ -97,21 +97,19 @@ void sendBrakeData(uint32_t brake)
 {
 
 	tCANMsgObject sMsgObjectTx;
-	uint8_t pui8BufferOut[8] = {0x00,0x00,0x00,0x00};
+	uint8_t pui8BufferOut[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
-	pui8BufferOut[0] = 0x03;
-	pui8BufferOut[1] = 0x69; // Event type Goes here
-	pui8BufferOut[2] = ((brake>>8)&0x00FF);//msb
-	pui8BufferOut[3] = (brake&0x00FF);//lsb
 
-	//GOSSIP GIRL
-	
+
+	pui8BufferOut[1] = ((brake>>8)&0x00FF);//msb
+	pui8BufferOut[2] = (brake&0x00FF);//lsb
+		
 	//Configure transmit of message object.
-	sMsgObjectTx.ui32MsgID =  brake_board_address; //CAN ID BRAKE MODULE 69 wink
+	sMsgObjectTx.ui32MsgID =  brake_board_address;
 	sMsgObjectTx.ui32Flags = 0;
-	sMsgObjectTx.ui32MsgLen = 4;
-	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATO
+	sMsgObjectTx.ui32MsgLen = 8;
+	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATOM
 
 	//Send out data on CAN
-	CANMessageSet(CAN0_BASE, 3, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
+	CANMessageSet(CAN0_BASE, 4, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }

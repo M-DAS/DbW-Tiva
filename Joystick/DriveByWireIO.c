@@ -21,10 +21,28 @@ uint64_t steerAvg = 0;
 void DriveByWireIO(void)                                         
 {
 	uint32_t ADC_values[3];
+	
 	get_contrlr_inputs(ADC_values);
 	
+//	if(steerCount < 100)
+//	{
+//	steerAvg+=ADC_values[0];
+//	steerCount++;
+//	}else
+//	{
+//	steerAvg=steerAvg/100;	
+//	sendSteeringData(steerAvg);
+//	steerCount = 0;
+//	steerAvg = 0;
+//	sendThrottleData(ADC_values[1]);
+//	sendBrakeData(ADC_values[1]);
+//	}
 	sendSteeringData(ADC_values[0]);
 	sendThrottleData(ADC_values[1]);
 	sendBrakeData(ADC_values[1]);
+	
+	
+	
+
 }
 
