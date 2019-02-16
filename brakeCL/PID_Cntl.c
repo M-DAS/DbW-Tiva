@@ -19,7 +19,7 @@ void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
 	uint32_t inputData = (-ADCin*12797 +26214400)>>18; //M = -.0488 B= 100  |ADCin 0 = 100% brake, 2048 = 0% brake
 	
 	uint8_t brakingPower = 10; // 6 for no brake really, 10 for too much
-	uint32_t scaleOut = (brakingPower*inputData)+ 645; //scale
+	uint32_t scaleOut = (brakingPower*inputData)+ 845; //scale 645
 	
 	brake_pressure_setpt = scaleOut;
 	
@@ -39,7 +39,7 @@ void PIDUpdate(void)
 		e0 = 0;									//Error set to 0
 	}
 	else 
-		u0 = u1 + 132760*e0 - 79656*e1; //calculated using slew rate
+		u0 = u1 + 254677*e0 - 79656*e1; //calculated using slew rate
 	
 	//Limit the scaled output to be between {65536000 = 1000*2^16} and {16777216 = 256*2^16}
 	if (u0 > 629145600)

@@ -465,6 +465,11 @@
               <FileType>1</FileType>
               <FilePath>.\Linear_Actuator.c</FilePath>
             </File>
+            <File>
+              <FileName>PID_Cntl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PID_Cntl.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
