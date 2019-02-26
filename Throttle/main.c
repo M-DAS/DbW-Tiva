@@ -8,7 +8,7 @@
 
 #include "Drive_by_Pedal.h"
 #include "Drive_by_Wire.h"
-
+#include "CAN_comm.h"
 
 
 
@@ -84,7 +84,7 @@ int main()
 					
 					//Send throttle postion from CAN to motor controller
 					Drive_by_Wire();
-					
+					Send_Throttle_Voltage();
 					//PF2 ^= 0x04;                // toggle PF2
 					
 					break;

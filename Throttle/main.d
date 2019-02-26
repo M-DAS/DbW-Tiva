@@ -5,3 +5,4 @@
 .\main.o: initialization.h
 .\main.o: Drive_by_Pedal.h
 .\main.o: Drive_by_Wire.h
+.\main.o: CAN_comm.h

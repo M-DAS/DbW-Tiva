@@ -37,7 +37,7 @@
 * Public Functions     *
 ***********************/
 void CAN_Setup(void);
-
+void Send_Throttle_Voltage(void);
 
 #endif /* _CANCOMM_H_ */
 

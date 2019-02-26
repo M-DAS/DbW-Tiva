@@ -11,7 +11,7 @@
 #include "driverlib/timer.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/can.h"
-
+#include "Pedal_ADC.h"
 #include "Globals_and_Defines.h"
 	
 
@@ -114,6 +114,28 @@ void CAN0_Handler(void)
 		}
 	}
 }
+void Send_Throttle_Voltage(void)
+{
+	tCANMsgObject sMsgObjectTx;
+	uint8_t BufferOut[3] = {0x00, 0x00, 0x00};
+	uint32_t throttle_pos;
+	throttle_pos = get_throttle_input();
+	BufferOut[0] = 0x03;
+	BufferOut[1] = throttle_pos >> 8;
+	BufferOut[1] &= 0x00FF;
+	BufferOut[2] = throttle_pos;
+	BufferOut[2] &= 0x00FF;
+	
+	//Configure transmit of message object.
+	sMsgObjectTx.ui32MsgID = 0x1CDBFFFF;
+	sMsgObjectTx.ui32Flags = 0;
+	sMsgObjectTx.ui32MsgLen = 3;
+	sMsgObjectTx.pui8MsgData = BufferOut;
+	
+	//Send out data on CAN
+	CANMessageSet(CAN0_BASE, 3, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
+}
+
 
 
 
