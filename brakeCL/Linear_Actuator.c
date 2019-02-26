@@ -12,6 +12,7 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/can.h"
 
+
 void zero_lin_act(void)
 {
 	tCANMsgObject sMsgObjectTx;
