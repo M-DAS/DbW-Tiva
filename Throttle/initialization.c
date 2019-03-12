@@ -17,43 +17,16 @@
 #include "Tick_Timer.h"
 #include "Pedal_ADC.h"
 #include "CAN_comm.h"
-#include "Digital_Pot.h"
-
-
+#include "DAC.h"
 
 void initialization(void)
 {
-
-	/***********************
-	* Bus Clock            *
-	***********************/
 	//Set system clock to 40MHz
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
-	
-
-	
-
-	
-	
-	/***************************
-	* IO Peripherals           *
-	***************************/	
 	PORTF_Setup();
 	Tick_Timer_Setup();
 	ADC0_Setup();
   CAN_Setup();
-	//Digital_Pot_Setup();
 	I2C_DAC_Setup();
-	
-	
-	
-	/*************************
-	* Master Interrupt Enable*
-	*************************/	
 	IntMasterEnable();
 }
-
-
-
-
-

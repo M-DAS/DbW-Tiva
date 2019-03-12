@@ -14,45 +14,33 @@
 #include "Pedal_ADC.h"
 #include "Globals_and_Defines.h"
 	
-
-
 void CAN_Setup(void)
 {
 	//CAN message object
 	tCANMsgObject sMsgObjectRx;
-
-	//Set system clock to 40MHz
-	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
 
 	//Enable PORTE
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOE))
 	{}
 
-	// Configure the GPIO pin muxing to select CAN0 functions for these pins.
-	// This step selects which alternate function is available for these pins.
 	GPIOPinConfigure(GPIO_PE4_CAN0RX);
 	GPIOPinConfigure(GPIO_PE5_CAN0TX);
 
 	//Configure the pins for CAN
 	GPIOPinTypeCAN(GPIO_PORTE_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
-	
 	// Enable the CAN0 module.
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_CAN0);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_CAN0))
 	{}
 
-	// Reset the state of all the message objects and the state of the CAN
-	// module to a known state.
 	CANInit(CAN0_BASE);
 
 		
 	// Configure the controller for 250 Kbit operation.
 	CANBitRateSet(CAN0_BASE, SysCtlClockGet(), 250000);
 	
-	//Set the priority for the Update timer as priority 1
-	//IntPrioritySet(INT_CAN0, 0x20);
 	
 	//Enable interrupts for CAN0
 	CANIntEnable(CAN0_BASE, CAN_INT_MASTER);
@@ -74,12 +62,6 @@ void CAN_Setup(void)
 	CANMessageSet(CAN0_BASE, 2, &sMsgObjectRx, MSG_OBJ_TYPE_RX);
 }
 
-
-
-
-
-
-
 void CAN0_Handler(void)
 {
 	uint32_t int_status, CAN_status;
@@ -87,7 +69,6 @@ void CAN0_Handler(void)
 	tCANMsgObject sMsgObjectRx;
 	sMsgObjectRx.pui8MsgData = data_array;
 	
-
 	//get interrupt status
 	int_status = CANIntStatus(CAN0_BASE, CAN_INT_STS_CAUSE);  
 	//get CAN status
@@ -100,17 +81,10 @@ void CAN0_Handler(void)
 		g_new_CAN_data = true;
 		if (data_array[0] == 0x04)
 		{
-			g_throttle_mode = true;
 			g_CAN_throttle_pos = 0x00000000;
 			g_CAN_throttle_pos |= data_array[2];
 			g_CAN_throttle_pos = g_CAN_throttle_pos<<8;
 			g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[1];
-			
-			//g_CAN_throttle_pos = data_array[1];
-		}
-		else
-		{
-			g_throttle_mode = false;
 		}
 	}
 }
@@ -120,10 +94,10 @@ void Send_Throttle_Voltage(void)
 	uint8_t BufferOut[3] = {0x00, 0x00, 0x00};
 	uint32_t throttle_pos;
 	throttle_pos = get_throttle_input();
-	BufferOut[0] = 0x03;
-	BufferOut[1] = throttle_pos >> 8;
-	BufferOut[1] &= 0x00FF;
-	BufferOut[2] = throttle_pos;
+	BufferOut[0] = 0x03;  							//SRC ID
+	BufferOut[1] = throttle_pos >> 8;   //MSB BYTE
+	BufferOut[1] &= 0x00FF;							
+	BufferOut[2] = throttle_pos;				//LSB BYTE
 	BufferOut[2] &= 0x00FF;
 	
 	//Configure transmit of message object.
@@ -135,9 +109,3 @@ void Send_Throttle_Voltage(void)
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 3, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
-
-
-
-
-
-

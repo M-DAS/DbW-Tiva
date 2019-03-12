@@ -14,4 +14,4 @@
 .\initialization.o: Tick_Timer.h
 .\initialization.o: Pedal_ADC.h
 .\initialization.o: CAN_comm.h
-.\initialization.o: Digital_Pot.h
+.\initialization.o: DAC.h

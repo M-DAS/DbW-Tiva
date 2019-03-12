@@ -450,6 +450,16 @@
               <FileType>1</FileType>
               <FilePath>.\Drive_by_Pedal.c</FilePath>
             </File>
+            <File>
+              <FileName>DAC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\DAC.c</FilePath>
+            </File>
+            <File>
+              <FileName>Drive_by_Wire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drive_by_Wire.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

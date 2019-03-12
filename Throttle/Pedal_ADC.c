@@ -10,25 +10,6 @@
 
 #include "Globals_and_Defines.h"
 
-
-//Function to read the throttle input
-uint32_t get_throttle_input(void)
-{
-	uint32_t ADC_value;
-	ADCIntClear(ADC0_BASE, 1);
-	
-	//Start conversion sequence
-	ADCProcessorTrigger(ADC0_BASE, 1);
-	while(!ADCIntStatus(ADC0_BASE, 1, false))
-	{
-	}
-	
-	//Get the ADC value
-	ADCSequenceDataGet(ADC0_BASE, 1, &ADC_value);
-	return ADC_value;
-}
-
-
 void ADC0_Setup(void)
 {
 	//Enable PORTD
@@ -50,4 +31,22 @@ void ADC0_Setup(void)
 	ADCSequenceStepConfigure(ADC0_BASE, 1, 0, ADC_CTL_CH4|ADC_CTL_IE|ADC_CTL_END);
 	ADCSequenceEnable(ADC0_BASE, 1);
 }
+
+//Function to read the throttle input
+uint32_t get_throttle_input(void)
+{
+	uint32_t ADC_value;
+	ADCIntClear(ADC0_BASE, 1);
+	
+	//Start conversion sequence
+	ADCProcessorTrigger(ADC0_BASE, 1);
+	while(!ADCIntStatus(ADC0_BASE, 1, false))
+	{
+	}
+	//Get the ADC value
+	ADCSequenceDataGet(ADC0_BASE, 1, &ADC_value);
+	return ADC_value;
+}
+
+
 

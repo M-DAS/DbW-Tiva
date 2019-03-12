@@ -10,22 +10,13 @@
 
 
 #include "Globals_and_Defines.h"
-//#include "CAN_comm.h"
-//#include "Controller_Inputs.h"
-//#include "PID.h"
-
-
-
 
 void Timer0A_Handler(void)
 {
 	// Clear the timer interrupt
 	TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	g_tick_flag = true;
-	//PF2 ^= 0x04;           //toggle PF2
 }
-
-
 
 void Tick_Timer_Setup(void)
 {
@@ -54,6 +45,3 @@ void Tick_Timer_Setup(void)
 	//Start the timer
 	TimerEnable(TIMER0_BASE, TIMER_A);
 }
-
-
-

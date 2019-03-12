@@ -13,9 +13,6 @@
 
 #include "Globals_and_Defines.h"
 
-
-
-
 void PORTF_Setup(void)
 {
 	/***********************
