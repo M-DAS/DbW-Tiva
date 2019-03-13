@@ -85,12 +85,18 @@ void CAN0_Handler(void)
 		 DbW_Activated = true;
 		 enableDbW = false;
 		}
-		if (data_array[0] == 0x04) // THIS IS SOURCE ID... If source = 4, do this crap
+		if (data_array[0] == 0x01 ||data_array[0] == 0x02) 		//This is joystick ID 0x01; This is PX2 ID 0x02;
 		{
-			g_CAN_throttle_pos = 0x00000000;
-			g_CAN_throttle_pos |= data_array[2];
-			g_CAN_throttle_pos = g_CAN_throttle_pos<<8;
-			g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[1];
+			int eventType = data_array[1];
+			switch(eventType)
+			{
+				case 0:
+						g_CAN_throttle_pos = 0x00000000;
+						g_CAN_throttle_pos |= data_array[2];
+						g_CAN_throttle_pos = g_CAN_throttle_pos<<8;
+						g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[1];
+				break;	
+			}	
 		}
 	}
 }

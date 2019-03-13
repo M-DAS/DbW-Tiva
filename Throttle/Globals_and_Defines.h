@@ -13,7 +13,7 @@
 #define Update_Rate 10
 
 //Throttle board CAN addfress
-#define throttle_board_address 0x012EEEEE
+#define throttle_board_address 0x1ADB0000;
 
 extern bool g_tick_flag;
 
