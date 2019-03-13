@@ -100,6 +100,12 @@ void Send_Throttle_Voltage(void)
 	uint8_t BufferOut[3] = {0x00, 0x00, 0x00};
 	uint32_t throttle_pos;
 	throttle_pos = get_throttle_input();
+	if (throttle_pos < 760) 
+		throttle_pos = 745;
+	if (throttle_pos > 2550) 
+		throttle_pos = 2729;
+	throttle_pos = (52848 * throttle_pos) - 39321600;
+	throttle_pos = throttle_pos >> 20;
 	BufferOut[0] = 0x03;  							//SRC ID
 	BufferOut[1] = throttle_pos >> 8;   //MSB BYTE
 	BufferOut[1] &= 0x00FF;							

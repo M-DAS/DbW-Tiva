@@ -17,9 +17,9 @@ int main()
 	{
 		if (g_tick_flag == true)   //Check if tick happened
 		{
-			PF2 ^= 0x04;						 //Flash blue LED
-			g_tick_flag = false;     //clear tick_flag
-			Send_Throttle_Voltage(); //send throttle voltage on CAN bus regardless of state.
+				PF2 ^= 0x04;						 //Flash blue LED
+				g_tick_flag = false;     //clear tick_flag
+				Send_Throttle_Voltage(); //send throttle voltage on CAN bus regardless of state.
 			
 				//Check throttle mode flag
 				if (DbW_Activated == true)
@@ -34,7 +34,7 @@ int main()
 						missed_CAN_data_cnt++;
 					
 					//Too many missing CAN data frames reset to drive by pedal mode
-					if (missed_CAN_data_cnt >= 2)
+					if (missed_CAN_data_cnt >= 3)
 					{
 						DbW_Activated = false;
 						//TODO: SEND DBW END MESSAGE HERE TO OTHER MODULES
@@ -42,9 +42,6 @@ int main()
 				 else
 						Drive_by_Wire();
 			}
-
-		}// end tick
-				
+		}// end tick			
 	}//end while loop
-
 }//end main
