@@ -7,9 +7,22 @@
 #include "initialization.h"
 #include "DAC.h"
 
+//0->100 scaled for DAC
+uint32_t DAC_Scale(uint32_t input)
+{
+	uint32_t DAC;
+	if(input > 0x10000000)
+		DAC = 75;
+	else
+	{
+		DAC = (901775 * DAC) + 89128960;
+		DAC = DAC >> 20;
+	}
+	return DAC;
+}
 
 //Throttle scaling
-uint32_t scale_CAN_throttle_pos(uint32_t input)
+uint32_t OLD_SCALING(uint32_t input)
 {
 	uint32_t digital_pot1;
 	if (input < 2000)
@@ -25,9 +38,9 @@ void Drive_by_Wire(void)
 {
 	uint32_t throttle_pos;
 	
-	throttle_pos = scale_CAN_throttle_pos(g_CAN_throttle_pos);
+	throttle_pos = DAC_Scale(g_CAN_throttle_pos);
 	
-	//send out throttle position to SPI digital potentiometer
+	//DAC out using I2C
 	update_dac1(throttle_pos);
 	update_dac2(throttle_pos>>1);
 }

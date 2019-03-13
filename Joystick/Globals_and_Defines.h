@@ -2,23 +2,10 @@
 #ifndef _GLOBALSANDDEFINES_H_
 #define _GLOBALSANDDEFINES_H_
 
-/***********************
-* Includes             *
-***********************/
+
 #include <stdint.h>
 #include <stdbool.h>
-/***********************
-* Public Types         *
-***********************/
 
-/***********************
-* Public Macros        *
-***********************/
-
-
-/***********************
-* Public Defines       *
-***********************/
 
 //PORTF LED pins
 #define PF2  (*((volatile uint32_t *)0x40025010))
@@ -32,45 +19,24 @@
 #define Update_Rate 10
 
 //Throttle board CAN address
-#define throttle_board_address 0x012EEEEE
+#define throttle_board_address 0x1ADB0000
 
 #define steering_board_address 0x011EEEEE
 
 #define brake_board_address 0x013EEEEE
 
-
-/***********************
-* Public Constants     *
-***********************/
-
-
-/***********************
-* Public Variables     *
-***********************/
 extern bool driveENABLE;
+
 //Flag for tick timer.   
-//Timer ISR sets to true.
-//Scheduler sets to false 
 extern bool g_tick_flag;
 
 //Flag for starting drive by wire.   
-//GPIO PORTF ISR sets to true.
-//Scheduler sets to false 
 extern bool g_start_flag;
 
 //Flag for stopping drive by wire.   
-//GPIO PORTF ISR sets to true.
-//Scheduler sets to false 
 extern bool g_stop_flag;
 
 extern bool g_new_CAN_data;
-
-
-
-/***********************
-* Public Functions     *
-***********************/
-
 
 #endif /* _GLOBALSANDDEFINES_H_ */
 

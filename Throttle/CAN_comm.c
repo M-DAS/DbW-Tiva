@@ -94,7 +94,7 @@ void CAN0_Handler(void)
 						g_CAN_throttle_pos = 0x00000000;
 						g_CAN_throttle_pos |= data_array[2];
 						g_CAN_throttle_pos = g_CAN_throttle_pos<<8;
-						g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[1];
+						g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[3];
 				break;	
 			}	
 		}

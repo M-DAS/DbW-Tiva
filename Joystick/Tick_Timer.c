@@ -13,9 +13,6 @@
 #include "CAN_comm.h"
 #include "Joystick.h"
 
-
-
-
 void Timer0A_Handler(void)
 {
 	// Clear the timer interrupt

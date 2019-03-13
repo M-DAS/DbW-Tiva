@@ -342,10 +342,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>7</ColumnNumber>
+      <ColumnNumber>66</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>75</TopLine>
-      <CurrentLine>99</CurrentLine>
+      <TopLine>69</TopLine>
+      <CurrentLine>97</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\CAN_comm.c</PathWithFileName>
       <FilenameWithoutPath>CAN_comm.c</FilenameWithoutPath>
@@ -390,10 +390,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>34</CurrentLine>
+      <TopLine>13</TopLine>
+      <CurrentLine>20</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Drive_by_Wire.c</PathWithFileName>
       <FilenameWithoutPath>Drive_by_Wire.c</FilenameWithoutPath>
