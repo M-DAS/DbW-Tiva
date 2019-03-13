@@ -21,6 +21,8 @@ extern bool g_new_CAN_data;
 
 extern bool DbW_Activated;
 
+extern bool enableDbW;
+
 //Global CAN buffer
 extern uint32_t g_CAN_throttle_pos;
 

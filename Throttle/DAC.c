@@ -13,9 +13,6 @@
 
 void I2C_DAC_Setup(void)
 {	
-	/***********************
-	* I2C0                 *
-	***********************/
 	//Turn on clock to GPIOB and I2C0
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);

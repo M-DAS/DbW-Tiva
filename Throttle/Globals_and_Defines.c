@@ -8,7 +8,9 @@ bool g_tick_flag = false;
 bool g_new_CAN_data = false;
 
 //Disable/Enable DBW with this bool   
-bool DbW_Activated = true;
+bool DbW_Activated = false;
+
+bool enableDbW = true;
 
 //CAN throttle command 0-256
 uint32_t g_CAN_throttle_pos = 0;

@@ -79,7 +79,13 @@ void CAN0_Handler(void)
 	{
 		CANMessageGet(CAN0_BASE, 2, &sMsgObjectRx, true);   //get received data
 		g_new_CAN_data = true;
-		if (data_array[0] == 0x04)
+		
+		if(enableDbW == true) //DbW will not activate until comm recieved from joystick/px2
+		{
+		 DbW_Activated = true;
+		 enableDbW = false;
+		}
+		if (data_array[0] == 0x04) // THIS IS SOURCE ID... If source = 4, do this crap
 		{
 			g_CAN_throttle_pos = 0x00000000;
 			g_CAN_throttle_pos |= data_array[2];
