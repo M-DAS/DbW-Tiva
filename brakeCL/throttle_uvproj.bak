@@ -167,12 +167,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -444,21 +444,6 @@
               <FileName>Pedal_ADC.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Pedal_ADC.c</FilePath>
-            </File>
-            <File>
-              <FileName>Drive_by_Pedal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drive_by_Pedal.c</FilePath>
-            </File>
-            <File>
-              <FileName>Digital_Pot.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Digital_Pot.c</FilePath>
-            </File>
-            <File>
-              <FileName>Drive_by_Wire.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Drive_by_Wire.c</FilePath>
             </File>
             <File>
               <FileName>Linear_Actuator.c</FileName>

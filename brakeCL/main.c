@@ -11,15 +11,8 @@
 #include "Linear_Actuator.h"
 #include "PID_Cntrl.h"
 
-
-
-
 int main()
 {
-	uint32_t tick_count = 0;
-	bool act_state = false;
-	uint32_t position;
-	
 	initialization();
 	en_clutch_lin_act();
 	g_tick_flag = false;
@@ -30,33 +23,8 @@ int main()
 		{
 			g_tick_flag = false;     //clear tick_flag
 			PF2 ^= 0x04;
-			//moveto_lin_act(position);
-			PIDUpdate();
-			
-			
-			
-//			if (tick_count == 50){
-//				PF2 ^= 0x04;
-//				tick_count = 0;
-//				if (act_state == true){
-//					position = 1900;
-//					//moveto_lin_act(1700);
-//					act_state = false;
-//					}
-//				else{
-//					position = 1700;
-//					//moveto_lin_act(1500);
-//					act_state =  true;
-//				}
-//			}
-//			else {
-//				tick_count++;
-//			}
-
-			
-		}// end tick
-				
+			PIDUpdate();		
+		}// end tick			
 	}//end while loop
-
 }//end main
 

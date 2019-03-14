@@ -4,10 +4,9 @@
 #include <stdbool.h>
 
 #include "Globals_and_Defines.h"
-#include "Pedal_ADC.h"
+#include "Pressure_ADC.h"
 #include "Linear_Actuator.h"
-//#include "QuadEncoder.h"
-//#include "MotorPWM.h"
+
 
 int32_t brake_pressure_setpt = 645;
 

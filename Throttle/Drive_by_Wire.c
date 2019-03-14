@@ -11,7 +11,7 @@
 uint32_t DAC_Scale(uint32_t input)
 {
 	uint32_t DAC;
-
+	//DAC = (1562378*input) + 73400320;
 	DAC = (1551892 * input) + 90177536; //4.4V = 235 8bit DAC, 1.6V =
 	DAC = DAC >> 20;
 	
