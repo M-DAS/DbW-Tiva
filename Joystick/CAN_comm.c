@@ -73,21 +73,25 @@ void sendThrottleData(uint32_t throttle)
 {
 	tCANMsgObject sMsgObjectTx;
 	uint8_t pui8BufferOut[8];
+	uint16_t throttleInput = throttle;
+	uint16_t ScaledThrottle;
 	
-	uint32_t ScaledThrottle = ((51170*throttle)-104685633)>>20;
-	if(ScaledThrottle > 0x10000000)
-		ScaledThrottle = 0;
+	if(throttleInput < 2048)
+		throttleInput = 2048;
+	if(throttleInput > 4085)
+		throttleInput = 4096;
 
-  pui8BufferOut[0] =  0x01;											//SRC ID
-	pui8BufferOut[1] =  0x00;											//Event type
-	
-	pui8BufferOut[2] = (ScaledThrottle&0x0000FF00)>>8;	//MSB data
-	pui8BufferOut[3] = (ScaledThrottle&0x000000FF);			//LSB data
+	ScaledThrottle = (((51170*throttleInput)-104685633)>>20);
+
+  pui8BufferOut[0] =  0x01;																						//SRC ID
+	pui8BufferOut[1] =  0x00;																						//Event type
+	pui8BufferOut[2] = (ScaledThrottle&0xFF00)>>8;											//MSB data
+	pui8BufferOut[3] = (ScaledThrottle&0x00FF);													//LSB data
 
 	//Configure transmit of message object.
 	sMsgObjectTx.ui32MsgID =  throttle_board_address;
 	sMsgObjectTx.ui32Flags = 0;
-	sMsgObjectTx.ui32MsgLen = 8;
+	sMsgObjectTx.ui32MsgLen = 4;
 	sMsgObjectTx.pui8MsgData = pui8BufferOut;
 
 	//Send out data on CAN

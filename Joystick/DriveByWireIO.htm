@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\DriveByWireIO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\DriveByWireIO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Mar 13 17:39:54 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Mar 13 21:23:19 2019
 <BR><P>
-<H3>Maximum Stack Usage =        108 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        116 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
 <P>
@@ -686,7 +686,7 @@ Global Symbols
 <P><STRONG><a name="[e4]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[8a]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 116 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -745,7 +745,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8b]"></a>main</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = main &rArr; DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialization
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DriveByWireIO
@@ -815,7 +815,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[93]"></a>DriveByWireIO</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, drivebywireio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = DriveByWireIO &rArr; sendThrottleData &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendThrottleData
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendSteeringData
@@ -898,8 +898,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DriveByWireIO
 </UL>
 
-<P><STRONG><a name="[af]"></a>sendThrottleData</STRONG> (Thumb, 82 bytes, Stack size 40 bytes, can_comm.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = sendThrottleData &rArr; CANMessageSet
+<P><STRONG><a name="[af]"></a>sendThrottleData</STRONG> (Thumb, 104 bytes, Stack size 48 bytes, can_comm.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = sendThrottleData &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
