@@ -11,13 +11,13 @@
 uint32_t DAC_Scale(uint32_t input)
 {
 	uint32_t DAC;
-	if(input > 0x10000000)
-		DAC = 75;
-	else
-	{
-		DAC = (901775 * DAC) + 89128960;
-		DAC = DAC >> 20;
-	}
+
+	DAC = (1551892 * input) + 90177536; //4.4V = 235 8bit DAC, 1.6V =
+	DAC = DAC >> 20;
+	
+	if (DAC > 250) //anything outside of the range of operation is thrown out.
+		DAC = 0;
+
 	return DAC;
 }
 
