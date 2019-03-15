@@ -91,10 +91,7 @@ void CAN0_Handler(void)
 			switch(eventType)
 			{
 				case 0:
-						g_CAN_throttle_pos = 0x00000000;
-						g_CAN_throttle_pos |= data_array[2];
-						g_CAN_throttle_pos = g_CAN_throttle_pos<<8;
-						g_CAN_throttle_pos = g_CAN_throttle_pos | data_array[3];
+						Throttle_Command = (data_array[2]<<8) + data_array[3];
 				break;	
 			}	
 		}

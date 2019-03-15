@@ -12,5 +12,4 @@ bool DbW_Activated = false;
 
 bool enableDbW = true;
 
-//CAN throttle command 0-256
-uint32_t g_CAN_throttle_pos = 0;
+uint16_t Throttle_Command = 0;

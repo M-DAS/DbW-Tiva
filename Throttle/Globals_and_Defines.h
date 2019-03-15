@@ -24,7 +24,7 @@ extern bool DbW_Activated;
 extern bool enableDbW;
 
 //Global CAN buffer
-extern uint32_t g_CAN_throttle_pos;
+extern uint16_t Throttle_Command;
 
 
 #endif /* _GLOBALSANDDEFINES_H_ */

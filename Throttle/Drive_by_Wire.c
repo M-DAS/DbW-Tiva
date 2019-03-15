@@ -8,39 +8,22 @@
 #include "DAC.h"
 
 //0->100 scaled for DAC
-uint32_t DAC_Scale(uint32_t input)
+uint16_t DAC_Scale(uint16_t input)
 {
-	uint32_t DAC;
-	//DAC = (1562378*input) + 73400320;
-	DAC = (1551892 * input) + 90177536; //4.4V = 235 8bit DAC, 1.6V =
-	DAC = DAC >> 20;
-	
-	if (DAC > 250) //anything outside of the range of operation is thrown out.
-		DAC = 0;
+	uint16_t DAC;
+	uint16_t tempIn = input;
+	if(tempIn > 100)//anything greater than 100% throttle is now 0.
+		tempIn = 0;
+
+	DAC = ((26854167*tempIn) + 937791848)>>20;
+
 
 	return DAC;
 }
-
-//Throttle scaling
-uint32_t OLD_SCALING(uint32_t input)
-{
-	uint32_t digital_pot1;
-	if (input < 2000)
-			digital_pot1 = 75;
-	else
-	{
-		digital_pot1 = 4777*input - 4164982;
-		digital_pot1 = digital_pot1>>16;
-	}
-	return (digital_pot1);
-}
 void Drive_by_Wire(void)
 {
-	uint32_t throttle_pos;
-	
-	throttle_pos = DAC_Scale(g_CAN_throttle_pos);
-	
+	uint16_t throttle = DAC_Scale(Throttle_Command);
 	//DAC out using I2C
-	update_dac1(throttle_pos);
-	update_dac2(throttle_pos>>1);
+	update_dac1(throttle);
+	update_dac2((throttle>>1)&0x07FF);//same as dividing by 2 and masking for roll over
 }
