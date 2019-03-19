@@ -37,7 +37,7 @@
 * Public Functions     *
 ***********************/
 void CAN_Setup(void);
-
+void send_brake_pressure_percentage();
 
 #endif /* _CANCOMM_H_ */
 

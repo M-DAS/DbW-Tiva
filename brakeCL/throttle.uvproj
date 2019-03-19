@@ -441,9 +441,24 @@
               <FilePath>.\CAN_comm.c</FilePath>
             </File>
             <File>
-              <FileName>Pressure_ADC.c</FileName>
+              <FileName>Pedal_ADC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Pressure_ADC.c</FilePath>
+              <FilePath>.\Pedal_ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>Drive_by_Pedal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drive_by_Pedal.c</FilePath>
+            </File>
+            <File>
+              <FileName>Digital_Pot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Digital_Pot.c</FilePath>
+            </File>
+            <File>
+              <FileName>Drive_by_Wire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drive_by_Wire.c</FilePath>
             </File>
             <File>
               <FileName>Linear_Actuator.c</FileName>

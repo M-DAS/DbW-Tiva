@@ -7,19 +7,33 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/timer.h"
+
+
 #include "Globals_and_Defines.h"
+//#include "CAN_comm.h"
+//#include "Controller_Inputs.h"
+//#include "PID.h"
+
+
+
 
 void Timer0A_Handler(void)
 {
 	// Clear the timer interrupt
 	TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	g_tick_flag = true;
+	//PF2 ^= 0x04;           //toggle PF2
 }
+
+
 
 void Tick_Timer_Setup(void)
 {
 	uint32_t ui32Period;  //used for setting up timer
 
+	/***********************
+	* TIMER0               *
+	***********************/
 	//Enable clock for TIMER0 and configure for periodic interrupt
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);  //Enable clock for TIMER0
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER0))

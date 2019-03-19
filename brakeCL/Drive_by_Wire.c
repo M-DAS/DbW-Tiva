@@ -6,6 +6,7 @@
 #include "Globals_and_Defines.h"
 #include "initialization.h"
 
+#include "Digital_pot.h"
 
 
 //Throttle scaling

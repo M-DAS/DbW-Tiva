@@ -7,3 +7,4 @@
 .\main.o: Drive_by_Wire.h
 .\main.o: Linear_Actuator.h
 .\main.o: PID_Cntrl.h
+.\main.o: CAN_comm.h

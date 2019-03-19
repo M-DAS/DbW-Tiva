@@ -12,6 +12,6 @@
 .\initialization.o: Globals_and_Defines.h
 .\initialization.o: Switches_PORTF.h
 .\initialization.o: Tick_Timer.h
-.\initialization.o: Pressure_ADC.h
+.\initialization.o: Pedal_ADC.h
 .\initialization.o: CAN_comm.h
 .\initialization.o: Digital_Pot.h

@@ -12,7 +12,6 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/can.h"
 
-
 void zero_lin_act(void)
 {
 	tCANMsgObject sMsgObjectTx;
@@ -104,4 +103,6 @@ void moveto_lin_act(uint32_t position)
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 3, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
+	
+
 

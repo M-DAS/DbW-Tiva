@@ -446,6 +446,21 @@
               <FilePath>.\Pedal_ADC.c</FilePath>
             </File>
             <File>
+              <FileName>Drive_by_Pedal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drive_by_Pedal.c</FilePath>
+            </File>
+            <File>
+              <FileName>Digital_Pot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Digital_Pot.c</FilePath>
+            </File>
+            <File>
+              <FileName>Drive_by_Wire.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Drive_by_Wire.c</FilePath>
+            </File>
+            <File>
               <FileName>Linear_Actuator.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Linear_Actuator.c</FilePath>

@@ -18,6 +18,10 @@
 
 void PORTF_Setup(void)
 {
+	/***********************
+	* PortF                *
+	***********************/
+	//Enable PORTF
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);  //Enable clock on GPIO PORTF
 	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3);  //Sets pins 1,2,3 as outputs
 	
