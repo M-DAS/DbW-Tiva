@@ -12,7 +12,7 @@ int main()
 {
 	uint32_t missed_CAN_data_cnt = 0;
 	initialization();
-	
+	DAC_Init();
 	while(1)
 	{
 		if (g_tick_flag == true)   //Check if tick happened

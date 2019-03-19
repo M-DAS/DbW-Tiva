@@ -8,35 +8,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
-/***********************
-* Public Types         *
-***********************/
-
-/***********************
-* Public Macros        *
-***********************/
-
-
-/***********************
-* Public Defines       *
-***********************/
-
-
-/***********************
-* Public Constants     *
-***********************/
-
-
-/***********************
-* Public Variables     *
-***********************/
-
-
-/***********************
-* Public Functions     *
-***********************/
 void Drive_by_Wire(void);
+void DAC_Init(void);
 
 #endif /* _DRIVEBYWIRE_H_ */
 

@@ -20,10 +20,18 @@ uint16_t DAC_Scale(uint16_t input)
 
 	return DAC;
 }
+
 void Drive_by_Wire(void)
 {
 	uint16_t throttle = DAC_Scale(Throttle_Command);
 	//DAC out using I2C
+	update_dac1(throttle);
+	update_dac2((throttle>>1)&0x07FF);//same as dividing by 2 and masking for roll over
+}
+void DAC_Init(void)
+{
+	uint16_t throttle = DAC_Scale(0);
+		//DAC out using I2C
 	update_dac1(throttle);
 	update_dac2((throttle>>1)&0x07FF);//same as dividing by 2 and masking for roll over
 }
