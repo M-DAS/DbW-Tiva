@@ -441,9 +441,9 @@
               <FilePath>.\CAN_comm.c</FilePath>
             </File>
             <File>
-              <FileName>Pedal_ADC.c</FileName>
+              <FileName>Pressure_ADC.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Pedal_ADC.c</FilePath>
+              <FilePath>.\Pressure_ADC.c</FilePath>
             </File>
             <File>
               <FileName>Linear_Actuator.c</FileName>
