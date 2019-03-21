@@ -12,4 +12,4 @@
 .\can_comm.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/can.h
 .\can_comm.o: Globals_and_Defines.h
 .\can_comm.o: PID_Cntrl.h
-.\can_comm.o: Pedal_ADC.h
+.\can_comm.o: Pressure_ADC.h

@@ -4,11 +4,8 @@
 #include <stdbool.h>
 
 #include "Globals_and_Defines.h"
-#include "Pedal_ADC.h"
+#include "Pressure_ADC.h"
 #include "Linear_Actuator.h"
-//#include "QuadEncoder.h"
-//#include "MotorPWM.h"
-
 
 
 int32_t brake_pressure_setpt = 645;
@@ -31,9 +28,10 @@ void PIDUpdate(void)
 {
 	int32_t currentPIDout;
 	int32_t e0, u0;
-	int32_t brake_pressure = get_brake_pressure();	//645
+	int32_t brake_pressure = get_brake_pressure();
 	static int32_t e1, u1;//we want to keep these values everytime the function is called, rather than clearing
 	e0 = brake_pressure_setpt - brake_pressure;
+	
 	//Scaled PID difference equation.  Only P and I terms are used.
 	if (e0 < 25 && e0 > -25){ //dead band, if its close enough, dont change it
 		u0 = u1;								//U0 is the current value, U1 is the previous value

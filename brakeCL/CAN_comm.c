@@ -14,9 +14,7 @@
 
 #include "Globals_and_Defines.h"
 #include "PID_Cntrl.h"
-#include "Pedal_ADC.h"
-
-
+#include "Pressure_ADC.h"
 
 void CAN_Setup(void)
 {
@@ -90,7 +88,6 @@ void CAN0_Handler(void)
 	}
 }
 
-
 void send_brake_pressure_percentage()
 {		
 	  tCANMsgObject sMsgObjectTx;
@@ -118,13 +115,12 @@ void send_brake_pressure_percentage()
 		//Configure transmit of message object.
 		sMsgObjectTx.ui32MsgID = 0x1CDBFFFF;
 		sMsgObjectTx.ui32Flags = 0;
-		sMsgObjectTx.ui32MsgLen = 8;
+		sMsgObjectTx.ui32MsgLen = 3;
 		sMsgObjectTx.pui8MsgData = pui8BufferOut;
 		
 		//Send out data on CAN
 		CANMessageSet(CAN0_BASE, 9, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
-
 
 
 
