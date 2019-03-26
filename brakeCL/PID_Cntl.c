@@ -7,13 +7,16 @@
 #include "Pressure_ADC.h"
 #include "Linear_Actuator.h"
 
-
+uint32_t eBrakeVals[5] = {10,30,50,70,100};
 int32_t brake_pressure_setpt = 645;
 
-void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
+void emergencyBrake(void)
 {
 	
-	int32_t ADCin = (dataMSB<<8) + dataLSB +2048;//add 2048 to data, 4096 ->2048 instead of 2048 ->0
+}
+void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
+{
+	int32_t ADCin = (dataMSB<<8) + dataLSB +2048;//add 2048 to data, 4095 ->2048 instead of 2048 ->0
 	
 	uint32_t inputData = (-ADCin*12797 +26214400)>>18; //M = -.0488 B= 100  |ADCin 0 = 100% brake, 2048 = 0% brake
 	
@@ -21,7 +24,6 @@ void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
 	uint32_t scaleOut = (brakingPower*inputData)+ 845; //scale 645
 	
 	brake_pressure_setpt = scaleOut;
-	
 }
 
 void PIDUpdate(void)

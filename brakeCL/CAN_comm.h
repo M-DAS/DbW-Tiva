@@ -8,5 +8,5 @@
 void CAN_Setup(void);
 void send_brake_pressure_percentage(void);
 
-#endif /* _CANCOMM_H_ */
+#endif 
 

@@ -20,9 +20,7 @@ uint32_t get_brake_pressure(void)
 	//Start conversion sequence
 	ADCProcessorTrigger(ADC0_BASE, 1);
 	while(!ADCIntStatus(ADC0_BASE, 1, false))
-	{
-	}
-	
+	{}
 	//Get the ADC value
 	ADCSequenceDataGet(ADC0_BASE, 1, &ADC_value);
 	return ADC_value;

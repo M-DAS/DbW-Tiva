@@ -8,5 +8,5 @@
 void PIDUpdate(void);
 void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB);
 
-#endif /* _PID_H_ */
+#endif 
 
