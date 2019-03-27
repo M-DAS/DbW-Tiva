@@ -91,31 +91,30 @@ void CAN0_Handler(void)
 void send_brake_pressure_percentage()
 {		
 	  tCANMsgObject sMsgObjectTx;
-	  uint8_t pui8BufferOut[8] = {0x01, 0x0a, 0x0f, 0x02, 0x0d,0x04, 0x00, 0x00};
-		uint16_t pressure = get_brake_pressure();
+	  uint8_t pui8BufferOut[8] = {0x01, 0x00, 0x0f, 0x02, 0x0d,0x04, 0x00, 0x00};
+		uint32_t pressure = get_brake_pressure();///(2149580 * get_brake_pressure())>>4;//get_brake_pressure();
 		
-		//uint16_t v_out = (100000 * pressure);
+		uint32_t v_out; // = (2149580 * pressure)>>4;;;;
+	
+		if(pressure > 850)
+			pressure = 850;
+		else if(pressure < 645)
+			pressure = 645;
 		
-		uint16_t v_out = (19854 * pressure)>>4;
-		//uint16_t v_out = (5* pressure)>>4;
-
-//		uint16_t v_out = 943;
-//		
-//		if(pressure > 943)
-//			v_out = 100;
-//		else if(pressure < 632)
-//			v_out = 0;
-//		else
-//			v_out = 69;
+		v_out = ((2149580*pressure)+ 676331520)>>20;  //2.05*2^20
 		
-		pui8BufferOut[2] = v_out & 0xFF;
-		pui8BufferOut[1] = (v_out &0xFF00)>>8;
+	//	v_out = v_out & 0x7FFF;
+		
+		pui8BufferOut[0] = 0x01; //SRC ID
+		pui8BufferOut[1] = 0x00; //EVENT TYPE
+		pui8BufferOut[3] = v_out & 0xFF;
+		pui8BufferOut[2] = (v_out &0xFF00)>>8;
 			
 		
 		//Configure transmit of message object.
-		sMsgObjectTx.ui32MsgID = 0x1CDBFFFF;
+		sMsgObjectTx.ui32MsgID = 0x1CDBFFF0;
 		sMsgObjectTx.ui32Flags = 0;
-		sMsgObjectTx.ui32MsgLen = 3;
+		sMsgObjectTx.ui32MsgLen = 4;
 		sMsgObjectTx.pui8MsgData = pui8BufferOut;
 		
 		//Send out data on CAN
