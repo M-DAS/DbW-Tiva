@@ -102,27 +102,19 @@ void send_brake_pressure_percentage()
 			pressure = 645;
 		
 		v_out = ((2149580*pressure)+ 676331520)>>20;  //2.05*2^20
-		
-	//	v_out = v_out & 0x7FFF;
+		v_out = (v_out&0x07FF);
 		
 		pui8BufferOut[0] = 0x01; //SRC ID
-		pui8BufferOut[1] = 0x00; //EVENT TYPE
-		pui8BufferOut[3] = v_out & 0xFF;
-		pui8BufferOut[2] = (v_out &0xFF00)>>8;
+		pui8BufferOut[2] = (v_out&0x00FF);//MSB
+		pui8BufferOut[1] = ((v_out&0xFF00)>>8);//LSB
 			
 		
 		//Configure transmit of message object.
 		sMsgObjectTx.ui32MsgID = 0x1CDBFFF0;
 		sMsgObjectTx.ui32Flags = 0;
-		sMsgObjectTx.ui32MsgLen = 4;
+		sMsgObjectTx.ui32MsgLen = 3;
 		sMsgObjectTx.pui8MsgData = pui8BufferOut;
 		
 		//Send out data on CAN
 		CANMessageSet(CAN0_BASE, 9, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
-
-
-
-
-
-

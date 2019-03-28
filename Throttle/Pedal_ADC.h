@@ -8,36 +8,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
-/***********************
-* Public Types         *
-***********************/
-
-/***********************
-* Public Macros        *
-***********************/
-
-
-/***********************
-* Public Defines       *
-***********************/
-
-
-/***********************
-* Public Constants     *
-***********************/
-
-
-/***********************
-* Public Variables     *
-***********************/
-
-
-/***********************
-* Public Functions     *
-***********************/
-uint32_t get_throttle_input(void);
+uint32_t get_throttle_input(int select);
 void ADC0_Setup(void);
 
-#endif /* _PEDALADC_H_ */
+#endif 
 

@@ -102,7 +102,7 @@ void Send_Throttle_Voltage(void)
 	tCANMsgObject sMsgObjectTx;
 	uint8_t BufferOut[3] = {0x00, 0x00, 0x00};
 	uint32_t throttle_pos;
-	throttle_pos = get_throttle_input();
+	throttle_pos = get_throttle_input(1);
 	if (throttle_pos < 760) 
 		throttle_pos = 745;
 	if (throttle_pos > 2550) 

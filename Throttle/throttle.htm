@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\throttle.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\throttle.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Tue Mar 19 01:01:28 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Mar 27 21:21:05 2019
 <BR><P>
 <H3>Maximum Stack Usage =         92 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -830,7 +830,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[94]"></a>Send_Throttle_Voltage</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, can_comm.o(.text))
+<P><STRONG><a name="[94]"></a>Send_Throttle_Voltage</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, can_comm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = Send_Throttle_Voltage &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_throttle_input
@@ -839,7 +839,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[99]"></a>ADC0_Setup</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, pedal_adc.o(.text))
+<P><STRONG><a name="[99]"></a>ADC0_Setup</STRONG> (Thumb, 122 bytes, Stack size 8 bytes, pedal_adc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = ADC0_Setup &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
@@ -852,8 +852,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialization
 </UL>
 
-<P><STRONG><a name="[b4]"></a>get_throttle_input</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, pedal_adc.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_throttle_input
+<P><STRONG><a name="[b4]"></a>get_throttle_input</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, pedal_adc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = get_throttle_input
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCProcessorTrigger

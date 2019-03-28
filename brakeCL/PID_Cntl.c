@@ -53,4 +53,3 @@ void PIDUpdate(void)
 	currentPIDout = u0>>18;//S^N scaling is 18 bit (could have done 20, but not needed)
 	moveto_lin_act(currentPIDout);
 }
-
