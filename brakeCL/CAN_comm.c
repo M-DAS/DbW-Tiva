@@ -66,6 +66,8 @@ void CAN0_Handler(void)
 {
 	uint32_t int_status, CAN_status;
 	uint8_t data_array[8];
+	uint16_t eventType;
+	uint16_t srcId;
 	tCANMsgObject sMsgObjectRx;
 	sMsgObjectRx.pui8MsgData = data_array;
 	//get interrupt status
@@ -81,7 +83,12 @@ void CAN0_Handler(void)
 		{
 			case brake_board_address:
 			isServiced = false;
-			updateSetPoint2(data_array[1], data_array[2]);
+			srcId = data_array[0];
+			eventType = data_array[1];
+			
+			if(srcId == 0x01 ||srcId == 0x02)
+				if(eventType == 0x00)
+					updateSetPoint2(data_array[2], data_array[3]);//msb,lsb
 			break;
 		
 		}
@@ -91,7 +98,7 @@ void CAN0_Handler(void)
 void send_brake_pressure_percentage()
 {		
 	  tCANMsgObject sMsgObjectTx;
-	  uint8_t pui8BufferOut[8] = {0x01, 0x00, 0x0f, 0x02, 0x0d,0x04, 0x00, 0x00};
+	  uint8_t pui8BufferOut[3] = {0x00, 0x00, 0x00};
 		uint32_t pressure = get_brake_pressure();///(2149580 * get_brake_pressure())>>4;//get_brake_pressure();
 		
 		uint32_t v_out; // = (2149580 * pressure)>>4;;;;

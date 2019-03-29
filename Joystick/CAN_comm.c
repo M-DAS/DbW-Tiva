@@ -102,17 +102,23 @@ void sendBrakeData(uint32_t brake)
 {
 
 	tCANMsgObject sMsgObjectTx;
-	uint8_t pui8BufferOut[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-
-
-
-	pui8BufferOut[1] = ((brake>>8)&0x00FF);//msb
-	pui8BufferOut[2] = (brake&0x00FF);//lsb
+	uint8_t pui8BufferOut[4] = {0x00,0x00,0x00,0x00};
+	uint16_t brakeInput = brake;
+	int32_t scaleOut;
+	if(brakeInput > 2048)
+		brakeInput = 2048;
+ 
+	scaleOut = (-1*brakeInput*12797 +26214400)>>18;
+	
+  pui8BufferOut[0] =  0x01;																						//SRC ID
+	pui8BufferOut[1] =  0x00;																						//Event type
+	pui8BufferOut[2] = ((scaleOut>>8)&0x00FF);//msb
+	pui8BufferOut[3] = (scaleOut&0x00FF);//lsb
 		
 	//Configure transmit of message object.
 	sMsgObjectTx.ui32MsgID =  brake_board_address;
 	sMsgObjectTx.ui32Flags = 0;
-	sMsgObjectTx.ui32MsgLen = 8;
+	sMsgObjectTx.ui32MsgLen = 4;
 	sMsgObjectTx.pui8MsgData = pui8BufferOut;//testATOM
 
 	//Send out data on CAN

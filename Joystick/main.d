@@ -6,3 +6,4 @@
 .\main.o: Switches_PORTF.h
 .\main.o: DriveByWireIO.h
 .\main.o: CAN_comm.h
+.\main.o: Joystick.h

@@ -8,35 +8,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-
-/***********************
-* Public Types         *
-***********************/
-
-/***********************
-* Public Macros        *
-***********************/
-
-
-/***********************
-* Public Defines       *
-***********************/
-
-
-/***********************
-* Public Constants     *
-***********************/
-
-
-/***********************
-* Public Variables     *
-***********************/
-
-
-/***********************
-* Public Functions     *
-***********************/
-void DriveByWireIO(void);
+void DriveByWireIO(uint32_t x,uint32_t y);
 
 
 

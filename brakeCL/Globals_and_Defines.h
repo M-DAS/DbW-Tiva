@@ -21,9 +21,11 @@ extern bool g_tick_flag;
 extern bool g_new_CAN_data;
 
 
-#define brake_board_address 0x013EEEEE
+#define brake_board_address 0x18DB0000
 
 extern bool isServiced;
+
+extern bool PID_Update_flag;
 
 
 #endif /* _GLOBALSANDDEFINES_H_ */

@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-void PIDUpdate(void);
+int32_t PIDUpdate(void);
 void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB);
 
 #endif 

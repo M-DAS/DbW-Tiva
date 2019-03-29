@@ -18,15 +18,15 @@ uint64_t steerAvg = 0;
  * ADC_Values[]: 0- Steering | 1 - Throttle | 2 - Brake act
  * 
  ********************************************************************/
-void DriveByWireIO(void)                                         
+void DriveByWireIO(uint32_t x,uint32_t y)                                         
 {
-	uint32_t ADC_values[3];
+	//uint32_t ADC_values[3];
 	
-	get_contrlr_inputs(ADC_values);
+	//get_contrlr_inputs(ADC_values);
 	
-	sendSteeringData(ADC_values[0]);
-	sendThrottleData(ADC_values[1]);
-	sendBrakeData(ADC_values[1]);
+	sendSteeringData(x);//0
+	sendThrottleData(y);//1
+	sendBrakeData(y);//1
 	
 	
 	

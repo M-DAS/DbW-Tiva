@@ -23,7 +23,7 @@
 
 #define steering_board_address 0x011EEEEE
 
-#define brake_board_address 0x013EEEEE
+#define brake_board_address 0x18DB0000
 
 extern bool driveENABLE;
 

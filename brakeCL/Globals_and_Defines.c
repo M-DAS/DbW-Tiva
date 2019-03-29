@@ -8,3 +8,5 @@ bool g_tick_flag = false;
 bool g_new_CAN_data = false;
 
 bool isServiced = true;
+
+bool PID_Update_flag = false;
