@@ -8,7 +8,7 @@
 #include "Linear_Actuator.h"
 
 uint32_t eBrakeVals[5] = {10,30,50,70,100};
-int32_t brake_pressure_setpt = 630;//645
+int32_t brake_pressure_setpt = 640;//645
 
 void emergencyBrake(void)
 {
@@ -18,7 +18,7 @@ void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
 {
 	int32_t inputData = (dataMSB<<8) + dataLSB;//add 2048 to data, 4095 ->2048 instead of 2048 ->0
 	
-	uint32_t scaleOut = (2*inputData)+ 630; //scale 645
+	uint32_t scaleOut = (2*inputData)+ 640; //scale 645
 	
 	brake_pressure_setpt = scaleOut;
 }
@@ -32,7 +32,7 @@ int32_t PIDUpdate(void)
 	e0 = brake_pressure_setpt - brake_pressure;
 	
 	//Scaled PID difference equation.  Only P and I terms are used.
-	if (e0 < 25 && e0 > -25){ //dead band, if its close enough, dont change it
+	if (e0 < 150 && e0 > -150){ //dead band, if its close enough, dont change it
 		u0 = u1;								//U0 is the current value, U1 is the previous value
 		e0 = 0;									//Error set to 0
 	}
