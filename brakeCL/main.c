@@ -25,12 +25,12 @@ int main()
 		if(PID_Update_flag == true)
 		{
 		PID_Update_flag = false;
-//		Tin0 = PIDUpdate();
-//		Tout0 = (63511*Tout1 + 1016*Tin0 + 1016*Tin1)>>16;
-//    Tout1 = Tout0;
-//		Tin1 = Tin0;
-//		currentPIDout = Tout1;
-		currentPIDout = PIDUpdate();
+		Tin0 = PIDUpdate();
+		Tout0 = (63511*Tout1 + 1016*Tin0 + 1016*Tin1)>>16;
+    Tout1 = Tout0;
+		Tin1 = Tin0;
+		currentPIDout = Tout1;
+//		currentPIDout = PIDUpdate();
 		}
 		if (g_tick_flag == true)   //Check if tick happened
 		{
