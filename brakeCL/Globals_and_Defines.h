@@ -25,7 +25,9 @@ extern bool g_new_CAN_data;
 
 extern bool isServiced;
 
-extern bool PID_Update_flag;
+extern bool BPS_Update_flag;
+
+extern uint32_t brakePressure;
 
 
 #endif /* _GLOBALSANDDEFINES_H_ */

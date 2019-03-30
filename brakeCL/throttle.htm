@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\throttle.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\throttle.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri Mar 29 22:08:10 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat Mar 30 01:46:56 2019
 <BR><P>
-<H3>Maximum Stack Usage =         92 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        116 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; send_brake_pressure_percentage &rArr; CANMessageSet
+__rt_entry_main &rArr; main &rArr; PIDUpdate &rArr; moveto_lin_act &rArr; CANMessageSet
 <P>
 <H3>
 Functions with no stack information
@@ -683,8 +683,8 @@ Global Symbols
 <P><STRONG><a name="[e3]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[8a]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; send_brake_pressure_percentage &rArr; CANMessageSet
+<BR><BR>[Stack]<UL><LI>Max Depth = 116 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; PIDUpdate &rArr; moveto_lin_act &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -741,14 +741,14 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[8b]"></a>main</STRONG> (Thumb, 138 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = main &rArr; send_brake_pressure_percentage &rArr; CANMessageSet
+<P><STRONG><a name="[8b]"></a>main</STRONG> (Thumb, 134 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = main &rArr; PIDUpdate &rArr; moveto_lin_act &rArr; CANMessageSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_brake_pressure_percentage
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveto_lin_act
+<BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_brake_pressure_percentage
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialization
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;en_clutch_lin_act
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDUpdate
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDUpdate
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -780,7 +780,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[99]"></a>Tick_Timer_Setup</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, tick_timer.o(.text))
+<P><STRONG><a name="[99]"></a>Tick_Timer_Setup</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, tick_timer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = Tick_Timer_Setup &rArr; SysCtlClockGet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerLoadSet
@@ -835,41 +835,39 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[96]"></a>send_brake_pressure_percentage</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, can_comm.o(.text))
+<P><STRONG><a name="[95]"></a>send_brake_pressure_percentage</STRONG> (Thumb, 106 bytes, Stack size 40 bytes, can_comm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = send_brake_pressure_percentage &rArr; CANMessageSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
+<BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b5]"></a>get_brake_pressure</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, pressure_adc.o(.text))
+<P><STRONG><a name="[94]"></a>get_brake_pressure</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, pressure_adc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_brake_pressure
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCProcessorTrigger
-<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
+<BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCProcessorTrigger
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_brake_pressure_percentage
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDUpdate
+<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[9a]"></a>ADC0_Setup</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, pressure_adc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = ADC0_Setup &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceStepConfigure
-<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceEnable
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceConfigure
+<BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceStepConfigure
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceEnable
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceConfigure
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialization
 </UL>
 
-<P><STRONG><a name="[be]"></a>zero_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
+<P><STRONG><a name="[bd]"></a>zero_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
 
@@ -881,38 +879,38 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bf]"></a>disable_clutch_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
+<P><STRONG><a name="[be]"></a>disable_clutch_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
 
-<P><STRONG><a name="[c0]"></a>en_motor_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
+<P><STRONG><a name="[bf]"></a>en_motor_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
 
-<P><STRONG><a name="[c1]"></a>disable_motor_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
+<P><STRONG><a name="[c0]"></a>disable_motor_lin_act</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, linear_actuator.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
 
-<P><STRONG><a name="[95]"></a>moveto_lin_act</STRONG> (Thumb, 66 bytes, Stack size 40 bytes, linear_actuator.o(.text))
+<P><STRONG><a name="[c1]"></a>moveto_lin_act</STRONG> (Thumb, 66 bytes, Stack size 40 bytes, linear_actuator.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = moveto_lin_act &rArr; CANMessageSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CANMessageSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDUpdate
 </UL>
 
 <P><STRONG><a name="[f0]"></a>emergencyBrake</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, pid_cntl.o(.text), UNUSED)
 
-<P><STRONG><a name="[b4]"></a>updateSetPoint2</STRONG> (Thumb, 32 bytes, Stack size 12 bytes, pid_cntl.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = updateSetPoint2
+<P><STRONG><a name="[b4]"></a>updateSetPoint2</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, pid_cntl.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = updateSetPoint2
 </UL>
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN0_Handler
 </UL>
 
-<P><STRONG><a name="[94]"></a>PIDUpdate</STRONG> (Thumb, 92 bytes, Stack size 24 bytes, pid_cntl.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = PIDUpdate &rArr; get_brake_pressure
+<P><STRONG><a name="[96]"></a>PIDUpdate</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, pid_cntl.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = PIDUpdate &rArr; moveto_lin_act &rArr; CANMessageSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveto_lin_act
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -955,35 +953,35 @@ Global Symbols
 
 <P><STRONG><a name="[f7]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[b6]"></a>ADCIntClear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adc.o(i.ADCIntClear))
-<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
+<P><STRONG><a name="[b5]"></a>ADCIntClear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adc.o(i.ADCIntClear))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
 </UL>
 
 <P><STRONG><a name="[f8]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[b8]"></a>ADCIntStatus</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, adc.o(i.ADCIntStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
+<P><STRONG><a name="[b7]"></a>ADCIntStatus</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, adc.o(i.ADCIntStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
 </UL>
 
-<P><STRONG><a name="[b7]"></a>ADCProcessorTrigger</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, adc.o(i.ADCProcessorTrigger))
-<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
+<P><STRONG><a name="[b6]"></a>ADCProcessorTrigger</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, adc.o(i.ADCProcessorTrigger))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
 </UL>
 
-<P><STRONG><a name="[bb]"></a>ADCSequenceConfigure</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, adc.o(i.ADCSequenceConfigure))
+<P><STRONG><a name="[ba]"></a>ADCSequenceConfigure</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, adc.o(i.ADCSequenceConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADCSequenceConfigure
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_Setup
 </UL>
 
-<P><STRONG><a name="[b9]"></a>ADCSequenceDataGet</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceDataGet))
-<BR><BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
+<P><STRONG><a name="[b8]"></a>ADCSequenceDataGet</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceDataGet))
+<BR><BR>[Called By]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_brake_pressure
 </UL>
 
-<P><STRONG><a name="[bd]"></a>ADCSequenceEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceEnable))
+<P><STRONG><a name="[bc]"></a>ADCSequenceEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceEnable))
 <BR><BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_Setup
 </UL>
 
-<P><STRONG><a name="[bc]"></a>ADCSequenceStepConfigure</STRONG> (Thumb, 154 bytes, Stack size 4 bytes, adc.o(i.ADCSequenceStepConfigure))
+<P><STRONG><a name="[bb]"></a>ADCSequenceStepConfigure</STRONG> (Thumb, 154 bytes, Stack size 4 bytes, adc.o(i.ADCSequenceStepConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ADCSequenceStepConfigure
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0_Setup
@@ -1020,13 +1018,13 @@ Global Symbols
 <P><STRONG><a name="[b0]"></a>CANMessageSet</STRONG> (Thumb, 358 bytes, Stack size 52 bytes, can.o(i.CANMessageSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = CANMessageSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disable_motor_lin_act
-<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;en_motor_lin_act
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disable_clutch_lin_act
-<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zero_lin_act
+<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveto_lin_act
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disable_motor_lin_act
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;en_motor_lin_act
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disable_clutch_lin_act
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;zero_lin_act
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Setup
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_brake_pressure_percentage
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;moveto_lin_act
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_brake_pressure_percentage
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;en_clutch_lin_act
 </UL>
 
@@ -1035,7 +1033,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a8]"></a>GPIODirModeSet</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, gpio.o(i.GPIODirModeSet))
-<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
+<BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeCAN
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOOutput
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTF_Setup
@@ -1044,7 +1042,7 @@ Global Symbols
 <P><STRONG><a name="[a9]"></a>GPIOPadConfigSet</STRONG> (Thumb, 312 bytes, Stack size 24 bytes, gpio.o(i.GPIOPadConfigSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIOPadConfigSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
+<BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeCAN
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOOutput
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORTF_Setup
@@ -1054,7 +1052,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Setup
 </UL>
 
-<P><STRONG><a name="[ba]"></a>GPIOPinTypeADC</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeADC))
+<P><STRONG><a name="[b9]"></a>GPIOPinTypeADC</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeADC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet

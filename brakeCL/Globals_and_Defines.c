@@ -9,4 +9,6 @@ bool g_new_CAN_data = false;
 
 bool isServiced = true;
 
-bool PID_Update_flag = false;
+bool BPS_Update_flag = false;
+
+uint32_t brakePressure = 0;

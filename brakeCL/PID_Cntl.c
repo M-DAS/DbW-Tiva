@@ -8,35 +8,35 @@
 #include "Linear_Actuator.h"
 
 uint32_t eBrakeVals[5] = {10,30,50,70,100};
-int32_t brake_pressure_setpt = 630;//645
+int32_t brake_pressure_setpt = 620;//NO BRAKE
 
 void emergencyBrake(void)
 {
 	
 }
-void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)
+void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)//MORE EXACT ADC mapping Y = 1255.23 * X -21.42 ... IE) .511 = 620.. try it
 {
 	uint16_t inputData = (dataMSB<<8) + dataLSB;
 	uint32_t scaleOut;
 	
 	if(inputData > 100)
-		inputData = 100;
-	
-	//scaleOut = (2*inputData)+ 635; //scale 645
-	scaleOut = (180224*inputData + 41615360)>>16;
+		inputData = 0;
+	//Voltage values ||| .511V = 620 |||| .750 = 920
+	//Lucky..? M = 3, B = 620... 
+	scaleOut = 3*inputData + 620;
 	brake_pressure_setpt = scaleOut;
 }
 
-int32_t PIDUpdate(void)
+void PIDUpdate(void)
 {
 	int32_t currentPIDout;
 	int32_t e0, u0;
-	int32_t brake_pressure = get_brake_pressure();
+	int32_t brake_pressure = brakePressure;
 	static int32_t e1, u1;//we want to keep these values everytime the function is called, rather than clearing
 	e0 = brake_pressure_setpt - brake_pressure;
 	
 	//Scaled PID difference equation.  Only P and I terms are used.
-	if (e0 < 50 && e0 > -50){ //dead band, if its close enough, dont change it
+	if (e0 < 5 && e0 > -5){ //dead band, if its close enough, dont change it
 		u0 = u1;								//U0 is the current value, U1 is the previous value
 		e0 = 0;									//Error set to 0
 	}
@@ -53,6 +53,6 @@ int32_t PIDUpdate(void)
 	u1 = u0; //shift to previous
 	e1 = e0;
 	currentPIDout = u0>>18;//S^N scaling is 18 bit (could have done 20, but not needed)
-	return currentPIDout;
-	//moveto_lin_act(currentPIDout);
+	
+	moveto_lin_act(currentPIDout);
 }

@@ -88,7 +88,9 @@ void CAN0_Handler(void)
 			
 			if(srcId == 0x01 ||srcId == 0x02)
 				if(eventType == 0x00)
+				{
 					updateSetPoint2(data_array[2], data_array[3]);//msb,lsb
+				}
 			break;
 		
 		}
@@ -99,21 +101,25 @@ void send_brake_pressure_percentage()
 {		
 	  tCANMsgObject sMsgObjectTx;
 	  uint8_t pui8BufferOut[3] = {0x00, 0x00, 0x00};
-		uint32_t pressure = get_brake_pressure();///(2149580 * get_brake_pressure())>>4;//get_brake_pressure();
+		uint32_t pressure = brakePressure;
 		
-		uint32_t v_out; // = (2149580 * pressure)>>4;;;;
+		int32_t v_out; 
 	
-		if(pressure > 850)
-			pressure = 850;
-		else if(pressure < 645)
-			pressure = 645;
+		if(pressure > 920)
+			pressure = 920;
+		if(pressure < 620)
+			pressure = 620;
+																						 //920 = 100%, 620 = 0%  ... M = 1/3 .... B = -206.6 ... 2^16 scaling
+		v_out = (21845*pressure - 13544106)>>16; //Voltage values ||| .511V = 620 |||| .750 = 920
 		
-		v_out = ((2149580*pressure)+ 676331520)>>20;  //2.05*2^20
-		v_out = (v_out&0x07FF);
+		if(v_out < 0)
+			v_out = 0;
+		if(v_out > 100)
+			v_out = 100;
 		
 		pui8BufferOut[0] = 0x01; //SRC ID
-		pui8BufferOut[2] = (v_out&0x00FF);//MSB
-		pui8BufferOut[1] = ((v_out&0xFF00)>>8);//LSB
+		pui8BufferOut[1] = ((v_out&0xFF00)>>8);//MSB
+		pui8BufferOut[2] = (v_out&0x00FF);//LSB
 			
 		
 		//Configure transmit of message object.

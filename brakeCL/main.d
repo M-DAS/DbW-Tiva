@@ -8,3 +8,4 @@
 .\main.o: Linear_Actuator.h
 .\main.o: PID_Cntrl.h
 .\main.o: CAN_comm.h
+.\main.o: Pressure_ADC.h
