@@ -11,8 +11,6 @@
 #include "Switches_PORTF.h"
 #include "CAN_comm.h"
 
-int steerCount = 0;
-uint64_t steerAvg = 0;
 /********************************************************************
  *
  * ADC_Values[]: 0- Steering | 1 - Throttle | 2 - Brake act
@@ -20,16 +18,8 @@ uint64_t steerAvg = 0;
  ********************************************************************/
 void DriveByWireIO(uint32_t x,uint32_t y)                                         
 {
-	//uint32_t ADC_values[3];
-	
-	//get_contrlr_inputs(ADC_values);
-	
 	sendSteeringData(x);//0
 	sendThrottleData(y);//1
 	sendBrakeData(y);//1
-	
-	
-	
-
 }
 

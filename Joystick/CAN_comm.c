@@ -49,7 +49,7 @@ void CAN_Setup(void)
 }
 
 
-void sendSteeringData(uint32_t steering) // will have to add ,modes here
+void sendSteeringData(uint32_t steering) // OG
 {
 	tCANMsgObject sMsgObjectTx;
 	uint8_t pui8BufferOut[8];
@@ -68,6 +68,27 @@ void sendSteeringData(uint32_t steering) // will have to add ,modes here
 	//Send out data on CAN
 	CANMessageSet(CAN0_BASE, 1, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
+
+void sendSteeringData2(uint32_t steering)
+{
+	tCANMsgObject sMsgObjectTx;
+	uint8_t pui8BufferOut[8];
+  pui8BufferOut[0] = 0x01; 	//SRC ID
+	pui8BufferOut[1] = 0x00; 	//Event type
+	pui8BufferOut[2] = (steering&0x0000FF00)>>8; 		//MSB
+	pui8BufferOut[3] = (steering&0x000000FF); 		//LSB
+	
+
+	//Configure transmit of message object.
+	sMsgObjectTx.ui32MsgID =  steering_board_address;
+	sMsgObjectTx.ui32Flags = 0;
+	sMsgObjectTx.ui32MsgLen = 4;
+	sMsgObjectTx.pui8MsgData = pui8BufferOut;
+
+	//Send out data on CAN
+	CANMessageSet(CAN0_BASE, 1, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
+}
+
 
 void sendThrottleData(uint32_t throttle)
 {

@@ -18,4 +18,4 @@ bool g_stop_flag = false;
 //Flag for new CAN data received.   
 bool g_new_CAN_data = false;
 
-
+bool filter_flag = false;

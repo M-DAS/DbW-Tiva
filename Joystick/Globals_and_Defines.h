@@ -20,8 +20,8 @@
 
 //Throttle board CAN address
 #define throttle_board_address 0x1ADB0000
-
-#define steering_board_address 0x011EEEEE
+//0x011EEEEE
+#define steering_board_address 0x19DB0000
 
 #define brake_board_address 0x18DB0000
 
@@ -37,6 +37,8 @@ extern bool g_start_flag;
 extern bool g_stop_flag;
 
 extern bool g_new_CAN_data;
+
+extern bool filter_flag;
 
 #endif /* _GLOBALSANDDEFINES_H_ */
 
