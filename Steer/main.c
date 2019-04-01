@@ -21,7 +21,7 @@ int main()
 		{
 			g_tick_flag = false;   //clear tick_flag
 			
-			PF3 ^= 0x08;
+			
 			
 			if(px2Data == true)
 			{
@@ -30,6 +30,7 @@ int main()
 			}
 			else if(joyData == true)
 			{
+			//	PF3 ^= 0x08;
 				joyData = false;
 				DriveByWireIO(CAN_Position);
 			}	

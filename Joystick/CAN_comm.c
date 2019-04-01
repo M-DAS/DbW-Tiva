@@ -49,7 +49,7 @@ void CAN_Setup(void)
 }
 
 
-void sendSteeringData(uint32_t steering) // OG
+void sendSteeringData2(uint32_t steering) // OG
 {
 	tCANMsgObject sMsgObjectTx;
 	uint8_t pui8BufferOut[8];
@@ -70,10 +70,10 @@ void sendSteeringData(uint32_t steering) // OG
 }
 
 
-void sendSteeringData2(uint32_t steering)
+void sendSteeringData(uint32_t steering)
 {
 	tCANMsgObject sMsgObjectTx;
-	uint8_t pui8BufferOut[8];
+	uint8_t pui8BufferOut[4];
   pui8BufferOut[0] = 0x01; 	//SRC ID
 	pui8BufferOut[1] = 0x00; 	//Event type
 	pui8BufferOut[2] = (steering&0x0000FF00)>>8; 		//MSB

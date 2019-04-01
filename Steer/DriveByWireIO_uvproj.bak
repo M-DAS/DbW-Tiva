@@ -431,11 +431,6 @@
               <FilePath>.\Tick_Timer.c</FilePath>
             </File>
             <File>
-              <FileName>Joystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Joystick.c</FilePath>
-            </File>
-            <File>
               <FileName>Steering_Actuator.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Steering_Actuator.c</FilePath>
