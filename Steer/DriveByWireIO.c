@@ -33,20 +33,35 @@ int32_t calc_steering_pos(uint32_t position)
   return scaled_position;
 }
 
+uint64_t avg;
 
-/********************************************************************
- *
- * Drive by wire: Calculating position/moving actuators
- * ADC_Values[]: 0- Steering | 1 - Throttle | 2 - Brake act
- * 
- ********************************************************************/
+static uint64_t movingAverage = 0;
+static uint64_t i = 0;
+static uint32_t movingAvg[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int n = 20;
+int occurances = 0;
 void DriveByWireIO(uint32_t position)                                         
 {
 	int32_t steering_pos;
 
+
 	steering_pos = calc_steering_pos(position);
+	movingAverage =movingAverage +position-movingAvg[i%n];
+	movingAvg[i%n] = position;
+	
+	i++;
+	
+	avg = movingAverage/n;
 
+	if(avg>= 2010 && avg <= 2210)	//1.698V = 2100 via ADC
+	occurances++;
+	else
+	occurances =0;
+
+	if(occurances > 18)
+	zero_steering_act();
+	else
 	moveto_steering_act(steering_pos);
-
+	
 }
 

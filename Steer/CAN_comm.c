@@ -61,6 +61,8 @@ void CAN0_Handler(void)
 {
 	uint32_t int_status, CAN_status;
 	uint8_t data_array[8];
+	uint8_t srcId;
+	uint8_t eventType;
 	tCANMsgObject sMsgObjectRx;
 	sMsgObjectRx.pui8MsgData = data_array;
 	//get interrupt status
@@ -81,7 +83,7 @@ void CAN0_Handler(void)
 						if (average > 3)
 						{
 							average = 0;
-							PF2 ^= 0x04;
+							//PF2 ^= 0x04;
 							zero_steering_act();
 							driveENABLE = false;
 						}
@@ -94,22 +96,34 @@ void CAN0_Handler(void)
 			case steering_board_address:
 				if(driveENABLE == true)
 				{
-					uint8_t x=0;
-					uint32_t position = 0;
-					PF2 ^= 0x04;
-					for (x = 4; x > 0; x--)
-						position +=data_array[x]<<(8*(x-1));
-					
+					uint8_t x = 0;
+					CAN_Position = 0;
+					CAN_Speed = 0x75;
 
-					DriveByWireIO(position);
+					PF2 ^= 0x04;
+					srcId = data_array[0];
+					eventType = data_array[1];
+					
+					if(srcId == 0x01)
+					{
+						if(eventType == 0x00)
+						{
+							joyData = true;
+							CAN_Position = (data_array[2]<<8) + data_array[3];
+						}
+					}
+					else if(srcId == 0x02)
+					{
+						if(eventType == 0x00)
+						{
+							px2Data = true;
+							CAN_Speed = data_array[6];
+							for (x = 4; x > 0; x--)
+								CAN_Position +=data_array[x]<<(8*(x-1));
+						}
+					}
 				}
 			break;
 		}
 	}
 }
-
-
-
-
-
-

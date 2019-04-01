@@ -69,6 +69,7 @@ void sendSteeringData(uint32_t steering) // OG
 	CANMessageSet(CAN0_BASE, 1, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }
 
+
 void sendSteeringData2(uint32_t steering)
 {
 	tCANMsgObject sMsgObjectTx;

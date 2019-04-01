@@ -30,10 +30,6 @@ void initialization(void)
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
 	
 
-
-	
-
-	
 	
 	/***************************
 	* IO Peripherals           *

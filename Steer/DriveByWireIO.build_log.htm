@@ -3,10 +3,54 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Josh\Documents\UMD\SD\Code\DbW-Tiva-Test-working-\Steer\DriveByWireIO.uvproj
-Project File Date:  01/09/2019
+C:\Users\Naso\Dropbox\DbW-Tiva\DbW-Tiva\Steer\DriveByWireIO.uvproj
+Project File Date:  03/12/2019
 
 <h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling startup.s...
+compiling main.c...
+compiling Globals_and_Defines.c...
+compiling initialization.c...
+compiling Tick_Timer.c...
+compiling Steering_Actuator.c...
+compiling DriveByWireIO.c...
+compiling Switches_PORTF.c...
+compiling CAN_comm.c...
+CAN_comm.c(62): warning:  #550-D: variable "CAN_status" was set but never used
+        uint32_t int_status, CAN_status;
+CAN_comm.c: 1 warning, 0 errors
+linking...
+Program Size: Code=5450 RO-data=1482 RW-data=52 ZI-data=1204  
+".\DriveByWireIO.axf" - 0 Error(s), 1 Warning(s).
 </pre>
 </body>
 </html>
+DriveByWireIO.axf" - 1 Error(s), 1 Warning(s).
+Target not created
+ever referenced
+                                        uint8_t speed = 0;
+CAN_comm.c(62): warning:  #550-D: variable "CAN_status" was set but never used
+        uint32_t int_status, CAN_status;
+CAN_comm.c: 2 warnings, 2 errors
+".\DriveByWireIO.axf" - 2 Error(s), 2 Warning(s).
+Target not created
+
+.\DriveByWireIO.axf: Error: L6200E: Symbol px2Data multiply defined (by can_comm.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by globals_and_defines.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by initialization.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by tick_timer.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by drivebywireio.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by switches_portf.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol joyData multiply defined (by can_comm.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by globals_and_defines.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by initialization.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by tick_timer.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by drivebywireio.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by switches_portf.o and main.o).
+.\DriveByWireIO.axf: Error: L6200E: Symbol CAN_Position multiply defined (by can_comm.o and main.o).
+Not enough information to list image symbols.
+Not enough information to list the image map.
+Finished: 2 information, 0 warning and 18 error messages.
+".\DriveByWireIO.axf" - 18 Error(s), 1 Warning(s).
+Target not created
