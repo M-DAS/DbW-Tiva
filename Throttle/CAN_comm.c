@@ -109,7 +109,7 @@ void Send_Throttle_Voltage(void)
 		throttle_pos = 2729;
 	throttle_pos = (52848 * throttle_pos) - 39321600;
 	throttle_pos = throttle_pos >> 20;
-	BufferOut[0] = 0x03;  							//SRC ID
+	BufferOut[0] = 0x01;  							//SRC ID
 	BufferOut[1] = throttle_pos >> 8;   //MSB BYTE
 	BufferOut[1] &= 0x00FF;							
 	BufferOut[2] = throttle_pos;				//LSB BYTE

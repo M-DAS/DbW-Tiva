@@ -115,15 +115,15 @@ void send_brake_pressure_percentage()
 		if(v_out < 0)
 			v_out = 0;
 		if(v_out > 100)
-			v_out = 100;
+			v_out = 0;
 		
-		pui8BufferOut[0] = 0x01; //SRC ID
+		pui8BufferOut[0] = 0x00; //SRC ID
 		pui8BufferOut[1] = ((v_out&0xFF00)>>8);//MSB
 		pui8BufferOut[2] = (v_out&0x00FF);//LSB
 			
 		
 		//Configure transmit of message object.
-		sMsgObjectTx.ui32MsgID = 0x1CDBFFF0;
+		sMsgObjectTx.ui32MsgID = 0x1CDBFFFF;
 		sMsgObjectTx.ui32Flags = 0;
 		sMsgObjectTx.ui32MsgLen = 3;
 		sMsgObjectTx.pui8MsgData = pui8BufferOut;
