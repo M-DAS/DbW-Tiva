@@ -81,18 +81,28 @@ void CAN0_Handler(void)
 			
 		switch(sMsgObjectRx.ui32MsgID)
 		{
+			case dsrc_address:
+				dsrc = !dsrc;
+			break;
 			case brake_board_address:
 			isServiced = false;
 			srcId = data_array[0];
 			eventType = data_array[1];
-			
 			if(srcId == 0x01 ||srcId == 0x02)
+			{
 				if(eventType == 0x00)
 				{
-					updateSetPoint2(data_array[2], data_array[3]);//msb,lsb
+					if(enableDbW == true)
+					{
+						updateSetPoint2(data_array[2], data_array[3]);//msb,lsb
+					}
 				}
-			break;
-		
+				else if(eventType == 0x01)
+				{
+					  enableDbW = !enableDbW;
+				}	
+			}
+			break;	
 		}
 	}
 }
@@ -130,4 +140,19 @@ void send_brake_pressure_percentage()
 		
 		//Send out data on CAN
 		CANMessageSet(CAN0_BASE, 9, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
+}
+
+void send_Estop()
+{		
+	  tCANMsgObject sMsgObjectTx;
+	  uint8_t pui8BufferOut[1] = {0x00};
+
+		//Configure transmit of message object.
+		sMsgObjectTx.ui32MsgID = 0x00EEEEEE;
+		sMsgObjectTx.ui32Flags = 0;
+		sMsgObjectTx.ui32MsgLen = 1;
+		sMsgObjectTx.pui8MsgData = pui8BufferOut;
+		
+		//Send out data on CAN
+		CANMessageSet(CAN0_BASE, 8, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }

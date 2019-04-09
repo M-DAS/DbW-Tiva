@@ -7,6 +7,7 @@
 
 void CAN_Setup(void);
 void send_brake_pressure_percentage(void);
+void send_Estop(void);
 
 #endif 
 

@@ -24,7 +24,7 @@
 void initialization(void)
 {
 	//Set system clock to 40MHz
-	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
+	SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
 	PORTF_Setup();
 	Tick_Timer_Setup();
 	ADC0_Setup();

@@ -19,12 +19,17 @@ void updateSetPoint2(uint8_t dataMSB, uint8_t dataLSB)//MORE EXACT ADC mapping Y
 	uint16_t inputData = (dataMSB<<8) + dataLSB;
 	uint32_t scaleOut;
 	
-	if(inputData > 100)
+if(inputData > 100)
 		inputData = 0;
+	
 	//Voltage values ||| .511V = 620 |||| .750 = 920
 	//Lucky..? M = 3, B = 620... 
+	if(inputData > 10)
+	{
 	scaleOut = 3*inputData + 620;
 	brake_pressure_setpt = scaleOut;
+	}else
+		brake_pressure_setpt = 500;
 }
 
 void PIDUpdate(void)

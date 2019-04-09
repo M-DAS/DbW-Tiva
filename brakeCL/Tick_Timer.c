@@ -11,16 +11,16 @@
 
 void Timer0A_Handler(void)
 {
-	// Clear the timer interrupt
-	TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 	g_tick_flag = true;
+		// Clear the timer interrupt
+	TimerIntClear(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
 }
 
 void Timer1A_Handler(void)
 {
-	// Clear the timer interrupt
-	TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
 	BPS_Update_flag = true;
+		// Clear the timer interrupt
+	TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
 }
 
 void Tick_Timer_Setup(void)
@@ -52,7 +52,7 @@ void Tick_Timer_Setup(void)
 	//Set the priority for the Update timer as the highest priority 0
 	IntPrioritySet(INT_TIMER0A, 0x00);
 			//Set the priority for the Update timer as the highest priority 0
-	IntPrioritySet(INT_TIMER1A, 0x20);
+	IntPrioritySet(INT_TIMER1A, 0x40);
 	
 	//Enable TIMER0 interrupt in the module and the NVIC
 	TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);   //Enable interrupt in the timer module

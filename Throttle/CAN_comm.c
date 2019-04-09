@@ -116,7 +116,7 @@ void Send_Throttle_Voltage(void)
 	BufferOut[2] &= 0x00FF;
 	
 	//Configure transmit of message object.
-	sMsgObjectTx.ui32MsgID = 0x1CDBFFFF;
+	sMsgObjectTx.ui32MsgID = 0x1F0F0F0F;
 	sMsgObjectTx.ui32Flags = 0;
 	sMsgObjectTx.ui32MsgLen = 3;
 	sMsgObjectTx.pui8MsgData = BufferOut;
