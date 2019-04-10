@@ -29,26 +29,12 @@ void initialization(void)
 	//Set system clock to 40MHz
 	SysCtlClockSet(SYSCTL_SYSDIV_5|SYSCTL_USE_PLL|SYSCTL_XTAL_16MHZ|SYSCTL_OSC_MAIN);
 	
-
-
-	
-
-	
-	
-	/***************************
-	* IO Peripherals           *
-	***************************/	
 	PORTD_Setup();
 	PORTF_Setup();
 	Tick_Timer_Setup();
 	ADC0_Setup();
 	CAN_Setup();
 	
-	
-	
-	/*************************
-	* Master Interrupt Enable*
-	*************************/	
 	IntMasterEnable();
 }
 

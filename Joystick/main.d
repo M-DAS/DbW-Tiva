@@ -7,3 +7,11 @@
 .\main.o: DriveByWireIO.h
 .\main.o: CAN_comm.h
 .\main.o: Joystick.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/tm4c123gh6pm.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/hw_memmap.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/hw_types.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/pin_map.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/sysctl.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/interrupt.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\driverlib/gpio.h
+.\main.o: C:\ti\TivaWare_C_Series-2.1.4.178\inc/hw_gpio.h

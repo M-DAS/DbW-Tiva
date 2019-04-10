@@ -30,8 +30,8 @@ extern bool driveENABLE;
 //Flag for tick timer.   
 extern bool g_tick_flag;
 
-//Flag for starting drive by wire.   
-extern bool g_start_flag;
+//Flag for dead woman switch to enable/disable DbW
+extern bool deadWoman;
 
 //Flag for stopping drive by wire.   
 extern bool g_stop_flag;

@@ -436,11 +436,6 @@
               <FilePath>.\Joystick.c</FilePath>
             </File>
             <File>
-              <FileName>Throttle.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Throttle.c</FilePath>
-            </File>
-            <File>
               <FileName>DriveByWireIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\DriveByWireIO.c</FilePath>

@@ -13,6 +13,15 @@
 #include "CAN_comm.h"
 #include "Joystick.h"
 
+#include "inc/tm4c123gh6pm.h"
+#include "inc/hw_memmap.h"
+#include "inc/hw_types.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/interrupt.h"
+#include "driverlib/gpio.h"
+#include "inc/hw_gpio.h"
+
 static uint32_t Tout0=0, Tout1=0, Tin0=0, Tin1=0;
 static uint32_t ToutA0=0, ToutA1=0, TinA0=0, TinA1=0;
 uint32_t joystick_x,joystick_y;
@@ -40,9 +49,24 @@ int main()
 		}
 		if (g_tick_flag == true) 											//Timer ISR @ 10 Hz
 		{
-			g_tick_flag = false;   											//clear tick_flag
+			g_tick_flag = false;   	
+										//clear tick_flag
+				if (GPIOPinRead(GPIO_PORTD_BASE, GPIO_PIN_7))
+				{
+					PF3 = 0x00;
+					deadWoman = false;
+				}
+				else
+				{
+					PF3 = 0x08;
+					deadWoman = true;
+				}
+				
+				
+			if(deadWoman)
+			{
 			DriveByWireIO(joystick_x,joystick_y);       //read inputs and output to actuators
-			PF3 ^= 0x08;
+			}
 		} 
 	}
 }

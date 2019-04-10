@@ -60,54 +60,57 @@ void PORTD_Setup(void)
 	GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7, GPIO_DIR_MODE_IN);
 	GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_6|GPIO_PIN_7, GPIO_STRENGTH_2MA, GPIO_PIN_TYPE_STD_WPU);
 	
-	GPIOIntTypeSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_FALLING_EDGE);
+	//GPIOIntTypeSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_FALLING_EDGE);
 		
 	//Enable PORTD interrupt in the PORT and the NVIC
-	GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_6|GPIO_INT_PIN_7);     
-	IntEnable(INT_GPIOD);  //Enable PORTF interrupt in the NVIC
+	//GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_6|GPIO_INT_PIN_7);     
+	//IntEnable(INT_GPIOD);  //Enable PORTF interrupt in the NVIC
 }
 
-void GPIOPortD_Handler(void)
-{
-	uint32_t status;
+//void GPIOPortD_Handler(void)
+//{
+//	uint32_t status;
 
-	status = GPIOIntStatus(GPIO_PORTD_BASE, true);
-	
-	if (status & GPIO_PIN_7)
-	{
-		g_start_flag = true;
-	}
+//	status = GPIOIntStatus(GPIO_PORTD_BASE, true);
+//	
+//	if (status & GPIO_PIN_7)
+//	{
+//		deadWoman = true;
+//		
+//	}else
+//		deadWoman = false;
 
-	
-	if (status & GPIO_PIN_6)
-	{
-		g_stop_flag = true;
-	}
-	
-	GPIOIntClear(GPIO_PORTD_BASE,GPIO_INT_PIN_6|GPIO_INT_PIN_7);
+//	
+//	//if (status & GPIO_PIN_6)
+//	//{
+//	//	g_stop_flag = true;
 
-
-}
-
-
-void enable_start(void)
-{
-	GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_6);
-}
-
-void disable_start(void)
-{
-	GPIOIntDisable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
-}
+//	//}
+//	
+//	GPIOIntClear(GPIO_PORTD_BASE,GPIO_INT_PIN_6|GPIO_INT_PIN_7);
 
 
-void enable_stop(void)
-{
-	GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
-}
+//}
 
-void disable_stop(void)
-{
-	GPIOIntDisable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
-}
+
+//void enable_start(void)
+//{
+//	GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_6);
+//}
+
+//void disable_start(void)
+//{
+//	GPIOIntDisable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
+//}
+
+
+//void enable_stop(void)
+//{
+//	GPIOIntEnable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
+//}
+
+//void disable_stop(void)
+//{
+//	GPIOIntDisable(GPIO_PORTD_BASE, GPIO_INT_PIN_7);
+//}
 

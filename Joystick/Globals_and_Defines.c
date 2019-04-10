@@ -10,7 +10,7 @@ bool g_tick_flag = false;
 bool driveENABLE = true;
 
 //Flag for starting drive by wire.   
-bool g_start_flag = false;
+bool deadWoman = false;
 
 //Flag for stopping drive by wire.   
 bool g_stop_flag = false;
