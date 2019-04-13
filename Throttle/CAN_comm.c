@@ -55,8 +55,8 @@ void CAN_Setup(void)
 	
 
 	// Configure a receive object.
-	sMsgObjectRx.ui32MsgID = throttle_board_address;
-	sMsgObjectRx.ui32MsgIDMask = 0x1FFFFFFF;
+	sMsgObjectRx.ui32MsgID = 0;
+	sMsgObjectRx.ui32MsgIDMask = 0;
 	sMsgObjectRx.ui32Flags = MSG_OBJ_RX_INT_ENABLE | MSG_OBJ_USE_ID_FILTER;
 	sMsgObjectRx.ui32MsgLen = 8;
 	CANMessageSet(CAN0_BASE, 2, &sMsgObjectRx, MSG_OBJ_TYPE_RX);
@@ -79,23 +79,22 @@ void CAN0_Handler(void)
 	{
 		CANMessageGet(CAN0_BASE, 2, &sMsgObjectRx, true);   //get received data
 		g_new_CAN_data = true;
-		
-		if(enableDbW == true) //DbW will not activate until comm recieved from joystick/px2
+		switch(sMsgObjectRx.ui32MsgID)
 		{
-		 DbW_Activated = true;
-		 enableDbW = false;
+			case throttle_board_address:
+				if(enableDbW == true) //DbW will not activate until comm recieved from joystick/px2
+				{
+					DbW_Activated = true;
+					enableDbW = false;
+				}
+				if (data_array[0] == 0x01 ||data_array[0] == 0x02) 		//This is joystick ID 0x01; This is PX2 ID 0x02;
+				{
+					int eventType = data_array[1];
+				if(eventType == 0x00)
+					Throttle_Command = (data_array[2]<<8) + data_array[3];	
+				}	break;
+			}		
 		}
-		if (data_array[0] == 0x01 ||data_array[0] == 0x02) 		//This is joystick ID 0x01; This is PX2 ID 0x02;
-		{
-			int eventType = data_array[1];
-			switch(eventType)
-			{
-				case 0:
-						Throttle_Command = (data_array[2]<<8) + data_array[3];
-				break;	
-			}	
-		}
-	}
 }
 void Send_Throttle_Voltage(void)
 {

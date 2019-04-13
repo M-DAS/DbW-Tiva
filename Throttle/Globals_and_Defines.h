@@ -12,8 +12,20 @@
 //Drive by wire update rate in Hz
 #define Update_Rate 10
 
-//Throttle board CAN addfress
-#define throttle_board_address 0x1ADB0000;
+//Throttle board CAN address
+#define throttle_board_address 0x1ADB0000
+
+//Define brake board address
+#define brake_board_address 0x18DB0000
+
+//Steering board address
+#define steering_board_address 0x19DB0000//0x011EEEEE
+
+//Torque Sensor address
+#define TorqueInOut_Address 0x18FF0313
+
+//Define DSRC radio address
+#define dsrc_address 0x1BDB0000
 
 extern bool g_tick_flag;
 
