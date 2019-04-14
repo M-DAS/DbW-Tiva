@@ -48,18 +48,20 @@ int main()
 			
 			send_brake_pressure_percentage();
 			
+			if(eStop > 4095)
+				eStop = 0;
 			
-			if(eStop < 425)
+			if(eStop < 700)
 			{
 				enableDbW = false;
 				PF2 = 0x00;
 				PF1 = 0x02;
 			  send_Estop();
 			}
-			else{
-				enableDbW = true;
-				PF1 = 0x00;
-			}
+//			else{
+//				enableDbW = true;
+//				PF1 = 0x00;
+//			}
 			
 			if(g_new_CAN_data == false)
 					canMiss++;

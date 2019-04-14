@@ -25,6 +25,12 @@
 //Define DSRC radio address
 #define dsrc_address 0x1BDB0000
 
+//Define Feedback message ID
+#define feedback_address 0x1CDBFFFF
+
+//Define E-stop Address ID
+#define estop_address 0x00EEEEEE
+
 //Flag for tick timer.   
 extern bool g_tick_flag;
 

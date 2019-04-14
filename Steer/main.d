@@ -7,3 +7,4 @@
 .\main.o: Steering_Actuator.h
 .\main.o: DriveByWireIO.h
 .\main.o: CAN_comm.h
+.\main.o: Estop_ADC.h

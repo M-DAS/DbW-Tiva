@@ -450,6 +450,11 @@
               <FileType>1</FileType>
               <FilePath>.\CAN_comm.c</FilePath>
             </File>
+            <File>
+              <FileName>Estop_ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Estop_ADC.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

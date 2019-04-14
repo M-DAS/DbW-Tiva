@@ -23,34 +23,49 @@ void Timer0A_Handler(void)
 	g_tick_flag = true;
 }
 
+void Timer1A_Handler(void)
+{
+	// Clear the timer interrupt
+	TimerIntClear(TIMER1_BASE, TIMER_TIMA_TIMEOUT);
+	BW_Update_flag = true;
+}
+
 
 
 void Tick_Timer_Setup(void)
 {
 	uint32_t ui32Period;  //used for setting up timer
 
-	/***********************
-	* TIMER0               *
-	***********************/
-	//Enable clock for TIMER0 and configure for periodic interrupt
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);  //Enable clock for TIMER0
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);  
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER0))
 	{}
-	TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);  //Set Timer0 to periodic mode
+		
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER1); 
+	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER1))
+	{}
+		
+	TimerConfigure(TIMER0_BASE, TIMER_CFG_PERIODIC);  
+	
+	TimerConfigure(TIMER1_BASE, TIMER_CFG_PERIODIC);
 
-	//Set the interrupt period  (How fast the interrupt will happen)
 	ui32Period = (SysCtlClockGet()/Update_Rate);
 	TimerLoadSet(TIMER0_BASE, TIMER_A, ui32Period - 1);
+		
+	ui32Period = (SysCtlClockGet()/5000);
+	TimerLoadSet(TIMER1_BASE, TIMER_A, ui32Period - 1);
 
-	//Set the priority for the Update timer as the highest priority 0
 	IntPrioritySet(INT_TIMER0A, 0x00);
+		
+	IntPrioritySet(INT_TIMER1A, 0x40);
 	
-	//Enable TIMER0 interrupt in the module and the NVIC
-	TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);   //Enable interrupt in the timer module
-	IntEnable(INT_TIMER0A);  //Enable TIMER0 interrupt in the NVIC
+	TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);  
+	IntEnable(INT_TIMER0A);  
 	
-	//Start the timer
+	TimerIntEnable(TIMER1_BASE, TIMER_TIMA_TIMEOUT);  
+	IntEnable(INT_TIMER1A);  
+
 	TimerEnable(TIMER0_BASE, TIMER_A);
+	TimerEnable(TIMER1_BASE, TIMER_A);
 }
 
 
