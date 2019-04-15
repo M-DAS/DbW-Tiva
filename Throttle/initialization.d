@@ -15,3 +15,4 @@
 .\initialization.o: Pedal_ADC.h
 .\initialization.o: CAN_comm.h
 .\initialization.o: DAC.h
+.\initialization.o: Drive_by_Wire.h

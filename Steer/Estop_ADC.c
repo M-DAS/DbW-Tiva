@@ -34,9 +34,7 @@ void ADC0_Setup(void)
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB))
 	{}
 
-
 	//PB5 E-STOP input CH11
-
 	GPIOPinTypeADC(GPIO_PORTB_BASE, GPIO_PIN_5);
 		
 	//Enable ADC0
@@ -47,6 +45,5 @@ void ADC0_Setup(void)
 	//Setup ADC0 sequencer 1 to read the throttle pedal input
 	ADCSequenceConfigure(ADC0_BASE, 1, ADC_TRIGGER_PROCESSOR, 0);
 	ADCSequenceStepConfigure(ADC0_BASE,1,0,ADC_CTL_CH11|ADC_CTL_IE|ADC_CTL_END);
-
 	ADCSequenceEnable(ADC0_BASE, 1);
 }

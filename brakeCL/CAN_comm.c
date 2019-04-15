@@ -66,12 +66,9 @@ void CAN0_Handler(void)
 		switch(sMsgObjectRx.ui32MsgID)
 		{
 			case estop_address:
-				if(data_array[0] == 66)
-				{
 					enableDbW = false;
 					PF2 = 0x00;
 					PF1 = 0x02;
-				}
 			break;
 			case dsrc_address:
 				dsrc = !dsrc;
@@ -136,14 +133,12 @@ void send_brake_pressure_percentage()
 void send_Estop()
 {		
 	  tCANMsgObject sMsgObjectTx;
-	  uint8_t pui8BufferOut[1] = {0x66};
+	  uint8_t pui8BufferOut[8] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
-		//Configure transmit of message object.
 		sMsgObjectTx.ui32MsgID = estop_address;
 		sMsgObjectTx.ui32Flags = 0;
-		sMsgObjectTx.ui32MsgLen = 1;
+		sMsgObjectTx.ui32MsgLen = 8;
 		sMsgObjectTx.pui8MsgData = pui8BufferOut;
 		
-		//Send out data on CAN
 		CANMessageSet(CAN0_BASE, 8, &sMsgObjectTx, MSG_OBJ_TYPE_TX);
 }

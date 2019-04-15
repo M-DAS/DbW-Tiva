@@ -67,6 +67,3 @@ void Tick_Timer_Setup(void)
 	TimerEnable(TIMER0_BASE, TIMER_A);
 	TimerEnable(TIMER1_BASE, TIMER_A);
 }
-
-
-

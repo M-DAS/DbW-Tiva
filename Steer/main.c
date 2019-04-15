@@ -10,7 +10,7 @@
 #include "CAN_comm.h"
 #include "Estop_ADC.h"
 
-
+uint32_t missed_CAN_data_cnt = 0;
 uint32_t Tout0=0, Tout1=0, Tin0=0, Tin1=0;
 uint32_t eStop = 1000;
 
@@ -34,21 +34,37 @@ int main()
 		if (g_tick_flag == true) //check tick happened
 		{
 			g_tick_flag = false;   //clear tick_flag
-			PF2 ^= 0x04;
 			
 			if(eStop > 4095)
 				eStop = 0;
 			
-			if(eStop < 700)
+			if(eStop < 25)
 			{
 				enableDbW = false;
 				PF2 = 0x00;
 				PF1 = 0x02;
 			  send_Estop();
 			}
+			if (g_new_CAN_data == true)
+			{
+				missed_CAN_data_cnt = 0;
+				g_new_CAN_data = false;   
+			}
+			else
+				missed_CAN_data_cnt++;
+				
+			if (missed_CAN_data_cnt >= 3)
+			{
+				enableDbW = false;
+				PF2 = 0x00;
+				PF1 = 0x02;
+			  send_Estop();				
+			}
 			
 			if(enableDbW == true && dsrc == false)
 			{
+				PF2 ^= 0x04;
+				PF1 = 0x00;
 				if(px2Data == true)
 				{
 					px2Data = false;

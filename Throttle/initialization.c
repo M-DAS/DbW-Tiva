@@ -18,6 +18,7 @@
 #include "Pedal_ADC.h"
 #include "CAN_comm.h"
 #include "DAC.h"
+#include "Drive_by_Wire.h"
 
 void initialization(void)
 {
@@ -28,5 +29,6 @@ void initialization(void)
 	ADC0_Setup();
   CAN_Setup();
 	I2C_DAC_Setup();
+	DAC_Init();
 	IntMasterEnable();
 }

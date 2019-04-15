@@ -51,16 +51,12 @@ int main()
 			if(eStop > 4095)
 				eStop = 0;
 			
-			if(eStop < 100)
+			if(eStop < 25)
 			{
 				enableDbW = false;
 				PF2 = 0x00;
 				PF1 = 0x02;
 			  send_Estop();
-			}
-			else{
-				enableDbW = true;
-				PF1 = 0x00;
 			}
 			
 			if(g_new_CAN_data == false)
@@ -73,13 +69,16 @@ int main()
 			
 			if(canMiss >= 3)
 			{
+				PF2 = 0x00;
+				PF1 = 0x02;
 				enableDbW = false;
+				send_Estop();
 			}
 			
 			if(enableDbW == true)
 			{
 				PF2 ^= 0x04;
-				
+				PF1 = 0x00;
 				if(dsrc == false)
 				{
 					PIDUpdate();// if theres no new control message, dont update the pi loop.
@@ -93,6 +92,8 @@ int main()
 			{			
 				updateSetPoint2(0x00,0x64);	//set point to 100% for emergency mode
 				PIDUpdate();// if theres no new control message, dont update the pi loop.	
+			  PF2 = 0x00;
+				PF1 = 0x02;
 			}// end tick
 		}
 	}//end while loop
