@@ -51,17 +51,17 @@ int main()
 			if(eStop > 4095)
 				eStop = 0;
 			
-			if(eStop < 700)
+			if(eStop < 100)
 			{
 				enableDbW = false;
 				PF2 = 0x00;
 				PF1 = 0x02;
 			  send_Estop();
 			}
-//			else{
-//				enableDbW = true;
-//				PF1 = 0x00;
-//			}
+			else{
+				enableDbW = true;
+				PF1 = 0x00;
+			}
 			
 			if(g_new_CAN_data == false)
 					canMiss++;
