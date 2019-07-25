@@ -8,6 +8,8 @@
 *.uvgui
 *.uvgui.*
 *.uvguix.*
+*.bak
+*.uvproj
 
 # Listing files
 *.cod
